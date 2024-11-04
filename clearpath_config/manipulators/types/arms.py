@@ -32,6 +32,7 @@ from clearpath_config.common.types.ip import IP
 from clearpath_config.common.types.port import Port
 from clearpath_config.manipulators.types.grippers import Gripper
 from clearpath_config.manipulators.types.manipulator import BaseManipulator
+from clearpath_generator_common.ros import ROS_DISTRO
 
 
 class BaseArm(BaseManipulator):
@@ -123,7 +124,7 @@ class KinovaGen3Dof6(BaseArm):
 
     @staticmethod
     def assert_is_supported():
-        raise UnsupportedAccessoryException("Kinova Gen3 is not yet supported for Jazzy")
+        raise UnsupportedAccessoryException(f"Kinova Gen3 is not yet supported in {ROS_DISTRO}")
 
 
 class KinovaGen3Dof7(BaseArm):
@@ -131,7 +132,7 @@ class KinovaGen3Dof7(BaseArm):
 
     @staticmethod
     def assert_is_supported():
-        raise UnsupportedAccessoryException("Kinova Gen3 is not yet supported for Jazzy")
+        raise UnsupportedAccessoryException(f"Kinova Gen3 is not yet supported in {ROS_DISTRO}")
 
 
 class KinovaGen3Lite(BaseArm):
@@ -139,7 +140,7 @@ class KinovaGen3Lite(BaseArm):
 
     @staticmethod
     def assert_is_supported():
-        raise UnsupportedAccessoryException("Kinova Gen3 Lite is not yet supported for Jazzy")
+        raise UnsupportedAccessoryException(f"Kinova Gen3 Lite is not yet supported in {ROS_DISTRO}")
 
 
 class Arm():
