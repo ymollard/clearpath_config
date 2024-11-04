@@ -55,12 +55,7 @@ class Link():
 
     @classmethod
     def assert_type(cls, _type: str) -> None:
-        assert _type in cls.TYPE, (
-            "Sensor type '%s' must be one of: '%s'" % (
-                _type,
-                cls.TYPE.keys()
-            )
-        )
+        assert _type in cls.TYPE, f'Sensor type "{_type}" must be one of "{cls.TYPE.keys()}'
 
     def __new__(cls, _type: str, name: str) -> BaseLink:
         cls.assert_type(_type)
@@ -86,12 +81,12 @@ class LinkListConfig(ListConfig[BaseLink, str]):
 # Links Config
 class LinksConfig(BaseConfig):
 
-    LINKS = "links"
-    BOX = "box"
-    CYLINDER = "cylinder"
-    FRAME = "frame"
-    MESH = "mesh"
-    SPHERE = "sphere"
+    LINKS = 'links'
+    BOX = 'box'
+    CYLINDER = 'cylinder'
+    FRAME = 'frame'
+    MESH = 'mesh'
+    SPHERE = 'sphere'
 
     TEMPLATE = {
         LINKS: {
@@ -149,21 +144,17 @@ class LinksConfig(BaseConfig):
     @frame.setter
     def frame(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), (
-                "Links must be list of type 'dict'"
-            )
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
             links = LinkListConfig()
             link_list = []
             for d in value:
-                link = Frame(name="frame")
+                link = Frame(name='frame')
                 link.from_dict(d)
                 link_list.append(link)
             links.set_all(link_list)
             self._frame = links
         else:
-            assert isinstance(value, list), (
-                "Links must be list of type 'dict'"
-            )
+            assert isinstance(value, list), 'Links must be of type "dict"'
 
     @property
     def box(self) -> LinkListConfig:
@@ -176,21 +167,17 @@ class LinksConfig(BaseConfig):
     @box.setter
     def box(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), (
-                "Links must be list of type 'dict'"
-            )
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
             links = LinkListConfig()
             link_list = []
             for d in value:
-                link = Box(name="box")
+                link = Box(name='box')
                 link.from_dict(d)
                 link_list.append(link)
             links.set_all(link_list)
             self._box = links
         else:
-            assert isinstance(value, list), (
-                "Links must be list of type 'dict'"
-            )
+            assert isinstance(value, list), 'Links must be of type "dict"'
 
     @property
     def cylinder(self) -> LinkListConfig:
@@ -203,21 +190,17 @@ class LinksConfig(BaseConfig):
     @cylinder.setter
     def cylinder(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), (
-                "Links must be list of type 'dict'"
-            )
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
             links = LinkListConfig()
             link_list = []
             for d in value:
-                link = Cylinder(name="cylinder")
+                link = Cylinder(name='cylinder')
                 link.from_dict(d)
                 link_list.append(link)
             links.set_all(link_list)
             self._cylinder = links
         else:
-            assert isinstance(value, list), (
-                "Links must be list of type 'dict'"
-            )
+            assert isinstance(value, list), 'Links must be of type "dict"'
 
     @property
     def mesh(self) -> LinkListConfig:
@@ -230,21 +213,17 @@ class LinksConfig(BaseConfig):
     @mesh.setter
     def mesh(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), (
-                "Links must be list of type 'dict'"
-            )
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
             links = LinkListConfig()
             link_list = []
             for d in value:
-                link = Mesh(name="mesh")
+                link = Mesh(name='mesh')
                 link.from_dict(d)
                 link_list.append(link)
             links.set_all(link_list)
             self._mesh = links
         else:
-            assert isinstance(value, list), (
-                "Links must be list of type 'dict'"
-            )
+            assert isinstance(value, list), 'Links must be of type "dict"'
 
     @property
     def sphere(self) -> LinkListConfig:
@@ -257,21 +236,17 @@ class LinksConfig(BaseConfig):
     @sphere.setter
     def sphere(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), (
-                "Links must be list of type 'dict'"
-            )
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
             links = LinkListConfig()
             link_list = []
             for d in value:
-                link = Sphere(name="sphere")
+                link = Sphere(name='sphere')
                 link.from_dict(d)
                 link_list.append(link)
             links.set_all(link_list)
             self._sphere = links
         else:
-            assert isinstance(value, list), (
-                "Links must be list of type 'dict'"
-            )
+            assert isinstance(value, list), 'Links must be of type "dict"'
 
     def get_all_links(self) -> List[BaseLink]:
         links = []
@@ -301,7 +276,7 @@ class LinksConfig(BaseConfig):
             offset_rpy: List[float] = BaseLink.RPY
             ) -> None:
         assert frame or name, (
-            "Frame object or name must be passed"
+            'Frame object or name must be passed'
         )
         if not frame and name:
             frame = Frame(
@@ -356,7 +331,7 @@ class LinksConfig(BaseConfig):
             offset_rpy: List[float] = BaseLink.RPY
             ) -> None:
         assert box or name, (
-            "Box object or name must be passed"
+            'Box object or name must be passed'
         )
         if not box and name:
             box = Box(
@@ -406,7 +381,7 @@ class LinksConfig(BaseConfig):
             offset_rpy: List[float] = BaseLink.RPY
             ) -> None:
         assert cylinder or name, (
-            "Cylinder object or name must be passed"
+            'Cylinder object or name must be passed'
         )
         if not cylinder and name:
             cylinder = Cylinder(
@@ -456,7 +431,7 @@ class LinksConfig(BaseConfig):
             offset_rpy: List[float] = BaseLink.RPY
             ) -> None:
         assert sphere or name, (
-            "Sphere object or name must be passed"
+            'Sphere object or name must be passed'
         )
         if not sphere and name:
             sphere = Sphere(
@@ -505,7 +480,7 @@ class LinksConfig(BaseConfig):
             offset_rpy: List[float] = BaseLink.RPY
             ) -> None:
         assert mesh or name, (
-            "Mesh object or name must be passed"
+            'Mesh object or name must be passed'
         )
         if not mesh and name:
             mesh = Mesh(

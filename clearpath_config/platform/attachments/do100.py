@@ -34,7 +34,7 @@ from typing import List
 
 class DO100TopPlate(DD100TopPlate):
     PLATFORM = Platform.DO100
-    ATTACHMENT_MODEL = "%s.top_plate" % PLATFORM
+    ATTACHMENT_MODEL = '%s.top_plate' % PLATFORM
 
     def __init__(
             self,

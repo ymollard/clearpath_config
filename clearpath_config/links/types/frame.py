@@ -31,7 +31,7 @@ from typing import List
 
 
 class Frame(BaseLink):
-    LINK_TYPE = "frame"
+    LINK_TYPE = 'frame'
 
     def __init__(
             self,

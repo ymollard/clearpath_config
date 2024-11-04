@@ -47,10 +47,10 @@ class DomainID:
     def assert_valid(id: int) -> None:
         # Check Type
         assert isinstance(id, int), (
-            "Domain ID must be an integer"
+            'Domain ID must be an integer'
         )
         # 0 - 101 Range
         assert 0 <= id <= 101, (
-            "Domain ID must be in range 0 - 101"
+            'Domain ID must be in range 0 - 101'
         )
         return

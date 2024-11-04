@@ -31,7 +31,7 @@ from typing import List
 
 
 class Disk(BaseMount):
-    MOUNT_MODEL = "disk"
+    MOUNT_MODEL = 'disk'
 
     def __init__(
             self,

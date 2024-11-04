@@ -32,7 +32,7 @@ from typing import List
 
 
 class FathPivot(BaseMount):
-    MOUNT_MODEL = "fath_pivot"
+    MOUNT_MODEL = 'fath_pivot'
     # Default Values
     ANGLE = 0.0
 
@@ -66,7 +66,5 @@ class FathPivot(BaseMount):
         return self.angle
 
     def set_angle(self, angle: float) -> None:
-        assert -pi < angle <= pi, (
-            "Angle '%s' must be in radian and  between pi and -pi"
-        )
+        assert -pi < angle <= pi, f'Angle "{angle}" must be in radian and  between -pi and pi'
         self.angle = angle

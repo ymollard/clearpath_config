@@ -30,7 +30,7 @@ from typing import List
 
 
 class BaseMount(IndexedAccessory):
-    MOUNT_MODEL = "base_mount"
+    MOUNT_MODEL = 'base_mount'
 
     def __init__(
         self,
@@ -63,7 +63,7 @@ class BaseMount(IndexedAccessory):
 
     @classmethod
     def get_name_from_idx(cls, idx: int) -> str:
-        return "%s_%s" % (
+        return '%s_%s' % (
             cls.get_mount_model(),
             idx
         )

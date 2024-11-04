@@ -33,10 +33,10 @@ from typing import List
 
 class DD100TopPlate(BaseAttachment):
     PLATFORM = Platform.DD100
-    ATTACHMENT_MODEL = "%s.top_plate" % PLATFORM
-    PACS = "pacs"
+    ATTACHMENT_MODEL = '%s.top_plate' % PLATFORM
+    PACS = 'pacs'
     MODELS = [PACS]
-    PARENT = "default_mount"
+    PARENT = 'default_mount'
     HEIGHT = 0.1
 
     def __init__(

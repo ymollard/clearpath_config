@@ -33,10 +33,10 @@ from clearpath_config.platform.types.attachment import BaseAttachment, PlatformA
 
 class R100FAMS(BaseAttachment):
     PLATFORM = Platform.R100
-    ATTACHMENT_MODEL = "%s.fams" % PLATFORM
-    DEFAULT = "default"
+    ATTACHMENT_MODEL = '%s.fams' % PLATFORM
+    DEFAULT = 'default'
     MODELS = [DEFAULT]
-    PARENT = "default_mount"
+    PARENT = 'default_mount'
     TABLE_HEIGHT = 0.3
 
     def __init__(
@@ -66,10 +66,10 @@ class R100FAMS(BaseAttachment):
 
 class R100HAMS(BaseAttachment):
     PLATFORM = Platform.R100
-    ATTACHMENT_MODEL = "%s.hams" % PLATFORM
-    DEFAULT = "default"
+    ATTACHMENT_MODEL = '%s.hams' % PLATFORM
+    DEFAULT = 'default'
     MODELS = [DEFAULT]
-    PARENT = "default_mount"
+    PARENT = 'default_mount'
     TABLE_HEIGHT = 0.6
     MOUNT_HEIGHT = 0.3
 
@@ -105,10 +105,10 @@ class R100HAMS(BaseAttachment):
 
 class R100Tower(BaseAttachment):
     PLATFORM = Platform.R100
-    ATTACHMENT_MODEL = "%s.tower" % PLATFORM
-    DEFAULT = "default"
+    ATTACHMENT_MODEL = '%s.tower' % PLATFORM
+    DEFAULT = 'default'
     MODELS = [DEFAULT]
-    PARENT = "default_mount"
+    PARENT = 'default_mount'
     LEFT_HEIGHT = 0.0
     RIGHT_HEIGHT = 0.0
 

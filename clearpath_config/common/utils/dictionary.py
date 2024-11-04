@@ -94,9 +94,7 @@ def flip_dict(d: MutableMapping, parent_key: str = '', dlim: str = '.'):
     flat = flatten_dict(d, parent_key, dlim)
     flip = {}
     for k, v in flat.items():
-        assert isinstance(v, str), (
-            "Flipping dictionary requires all values to be of type 'str'"
-        )
+        assert isinstance(v, str), 'Flipping dictionary requires all values to be of type "str"'
         flip[v] = k
     return flip
 
@@ -121,7 +119,7 @@ def set_in_dict(d, map, val):
 
 def extend_dict(a: dict, b: dict):
     for key, value in flatten_dict(b).items():
-        keys = key.split(".")
+        keys = key.split('.')
         set_in_dict(a, keys, value)
     return a
 

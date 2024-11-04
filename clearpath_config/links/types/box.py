@@ -31,7 +31,7 @@ from typing import List
 
 
 class Box(BaseLink):
-    LINK_TYPE = "box"
+    LINK_TYPE = 'box'
     SIZE = [0.01, 0.01, 0.01]
 
     def __init__(
@@ -66,7 +66,7 @@ class Box(BaseLink):
             self.set_size(d['size'])
 
     def set_size(self, size: List[float]) -> None:
-        msg = "Box size must be a list of three positive floats"
+        msg = 'Box size must be a list of three positive floats'
         Accessory.assert_valid_triplet(size, msg)
         assert all([i >= 0.0 for i in size]), msg
         self.size = size

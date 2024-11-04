@@ -32,9 +32,9 @@ from typing import List
 
 
 class Mesh(BaseLink):
-    LINK_TYPE = "mesh"
-    VISUAL = ""
-    # COLLISION = "empty.stl"
+    LINK_TYPE = 'mesh'
+    VISUAL = ''
+    # COLLISION = 'empty.stl'
 
     def __init__(
             self,

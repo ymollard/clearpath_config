@@ -52,12 +52,7 @@ class Mount():
     }
 
     def __new__(cls, model: str) -> BaseMount:
-        assert model in Mount.MODEL, (
-            "Model '%s' must be one of: '%s'" % (
-                model,
-                Mount.MODEL.keys()
-            )
-        )
+        assert model in Mount.MODEL, f'Model "{model}" must be one of "{Mount.MODEL.keys()}"'
         return Mount.MODEL[model]()
 
 
@@ -74,7 +69,7 @@ class MountListConfig(OrderedListConfig[BaseMount]):
 
 class MountsConfig(BaseConfig):
 
-    MOUNTS = "mounts"
+    MOUNTS = 'mounts'
     BRACKET = PACS.Bracket.MOUNT_MODEL
     FATH_PIVOT = FathPivot.MOUNT_MODEL
     RISER = PACS.Riser.MOUNT_MODEL
@@ -143,9 +138,9 @@ class MountsConfig(BaseConfig):
     @bracket.setter
     def bracket(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of type "dict"')
         assert all([isinstance(i, dict) for i in value]), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of type "dict"')
         mounts = MountListConfig()
         mount_list = []
         for d in value:
@@ -166,9 +161,9 @@ class MountsConfig(BaseConfig):
     @riser.setter
     def riser(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         assert all([isinstance(i, dict) for i in value]), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
         for d in value:
@@ -189,9 +184,9 @@ class MountsConfig(BaseConfig):
     @fath_pivot.setter
     def fath_pivot(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         assert all([isinstance(i, dict) for i in value]), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
         for d in value:
@@ -212,9 +207,9 @@ class MountsConfig(BaseConfig):
     @sick_stand.setter
     def sick_stand(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         assert all([isinstance(i, dict) for i in value]), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
         for d in value:
@@ -235,9 +230,9 @@ class MountsConfig(BaseConfig):
     @post.setter
     def post(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         assert all([isinstance(i, dict) for i in value]), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
         for d in value:
@@ -258,9 +253,9 @@ class MountsConfig(BaseConfig):
     @disk.setter
     def disk(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         assert all([isinstance(i, dict) for i in value]), (
-            "Mounts must be list of 'dict'")
+            'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
         for d in value:

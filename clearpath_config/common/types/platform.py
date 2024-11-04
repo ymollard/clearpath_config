@@ -55,23 +55,23 @@ class IndexingProfile:
 # - all supported platforms
 class Platform:
     # Dingo D V1
-    DD100 = "dd100"
+    DD100 = 'dd100'
     # Dingo O V1
-    DO100 = "do100"
+    DO100 = 'do100'
     # Dingo D V1.5
-    DD150 = "dd150"
+    DD150 = 'dd150'
     # Dingo D V1.5
-    DO150 = "do150"
+    DO150 = 'do150'
     # Jackal V1
-    J100 = "j100"
+    J100 = 'j100'
     # Husky V2
-    A200 = "a200"
+    A200 = 'a200'
     # Ridgeback V1
-    R100 = "r100"
+    R100 = 'r100'
     # Warthog V2
-    W200 = "w200"
+    W200 = 'w200'
     # Genric Robot
-    GENERIC = "generic"
+    GENERIC = 'generic'
 
     ALL = [
         DD100,

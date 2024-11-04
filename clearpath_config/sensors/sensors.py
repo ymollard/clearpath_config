@@ -81,7 +81,7 @@ class InertialMeasurementUnit():
     @classmethod
     def assert_model(cls, model: str) -> None:
         assert model in cls.MODEL, (
-            "Model '%s' must be one of: '%s'" % (
+            'Model '%s' must be one of: '%s'' % (
                 model,
                 cls.MODEL.keys()
             )
@@ -108,7 +108,7 @@ class Camera():
     @classmethod
     def assert_model(cls, model: str) -> None:
         assert model in cls.MODEL, (
-            "Model '%s' must be one of: '%s'" % (
+            'Model '%s' must be one of: '%s'' % (
                 model,
                 cls.MODEL.keys()
             )
@@ -137,7 +137,7 @@ class GlobalPositioningSystem():
     @classmethod
     def assert_model(cls, model: str) -> None:
         assert model in cls.MODEL, (
-            "Model '%s' must be one of: '%s'" % (
+            'Model '%s' must be one of: '%s'' % (
                 model,
                 cls.MODEL.keys()
             )
@@ -160,7 +160,7 @@ class Lidar2D():
     @classmethod
     def assert_model(cls, model: str) -> None:
         assert model in cls.MODEL, (
-            "Model '%s' must be one of: '%s'" % (
+            'Model '%s' must be one of: '%s'' % (
                 model,
                 cls.MODEL.keys()
             )
@@ -181,7 +181,7 @@ class Lidar3D():
     @classmethod
     def assert_model(cls, model: str) -> None:
         assert model in cls.MODEL, (
-            "Model '%s' must be one of: '%s'" % (
+            'Model '%s' must be one of: '%s'' % (
                 model,
                 cls.MODEL.keys()
             )
@@ -210,7 +210,7 @@ class Sensor():
     @classmethod
     def assert_type(cls, _type: str) -> None:
         assert _type in cls.TYPE, (
-            "Sensor type '%s' must be one of: '%s'" % (
+            'Sensor type '%s' must be one of: '%s'' % (
                 _type,
                 cls.TYPE.keys()
             )
@@ -240,7 +240,7 @@ class SensorConfig(BaseConfig):
     IMU_INDEX = 0
     GPS_INDEX = 0
 
-    SENSORS = "sensors"
+    SENSORS = 'sensors'
     CAMERA = BaseCamera.SENSOR_TYPE
     IMU = BaseIMU.SENSOR_TYPE
     GPS = BaseGPS.SENSOR_TYPE
@@ -319,11 +319,11 @@ class SensorConfig(BaseConfig):
     @camera.setter
     def camera(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all([isinstance(d, dict) for d in value]), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all(['model' in d for d in value]), (
-            "Sensor 'dict' must have 'model' key")
+            'Sensor 'dict' must have 'model' key')
         sensor_list = []
         for d in value:
             sensor = Camera(d['model'])
@@ -342,11 +342,11 @@ class SensorConfig(BaseConfig):
     @gps.setter
     def gps(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all([isinstance(d, dict) for d in value]), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all(['model' in d for d in value]), (
-            "Sensor 'dict' must have 'model' key")
+            'Sensor 'dict' must have 'model' key')
         sensor_list = []
         for d in value:
             sensor = GlobalPositioningSystem(d['model'])
@@ -365,11 +365,11 @@ class SensorConfig(BaseConfig):
     @imu.setter
     def imu(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all([isinstance(d, dict) for d in value]), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all(['model' in d for d in value]), (
-            "Sensor 'dict' must have 'model' key")
+            'Sensor 'dict' must have 'model' key')
         sensor_list = []
         for d in value:
             sensor = InertialMeasurementUnit(d['model'])
@@ -388,11 +388,11 @@ class SensorConfig(BaseConfig):
     @lidar2d.setter
     def lidar2d(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all([isinstance(d, dict) for d in value]), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all(['model' in d for d in value]), (
-            "Sensor 'dict' must have 'model' key")
+            'Sensor 'dict' must have 'model' key')
         sensor_list = []
         for d in value:
             sensor = Lidar2D(d['model'])
@@ -411,11 +411,11 @@ class SensorConfig(BaseConfig):
     @lidar3d.setter
     def lidar3d(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all([isinstance(d, dict) for d in value]), (
-            "Sensors must be list of 'dict'")
+            'Sensors must be list of 'dict'')
         assert all(['model' in d for d in value]), (
-            "Sensor 'dict' must have 'model' key")
+            'Sensor 'dict' must have 'model' key')
         sensor_list = []
         for d in value:
             sensor = Lidar3D(d['model'])
@@ -457,7 +457,7 @@ class SensorConfig(BaseConfig):
             rpy: List[float] = Accessory.RPY
             ) -> None:
         assert lidar2d or model, (
-            "Lidar2D object or model must be passed."
+            'Lidar2D object or model must be passed.'
         )
         if not lidar2d and model:
             lidar2d = Lidar2D(model)
@@ -504,7 +504,7 @@ class SensorConfig(BaseConfig):
                 rpy=rpy
             )
         assert isinstance(ust, HokuyoUST), (
-            "Lidar2D object must be of type UST"
+            'Lidar2D object must be of type UST'
         )
         self._lidar2d.add(ust)
 
@@ -539,7 +539,7 @@ class SensorConfig(BaseConfig):
                 rpy=rpy
             )
         assert isinstance(lms1xx, SickLMS1XX), (
-            "Lidar2D object must be of type LMS1XX"
+            'Lidar2D object must be of type LMS1XX'
         )
         self._lidar2d.add(lms1xx)
 
@@ -597,7 +597,7 @@ class SensorConfig(BaseConfig):
             rpy: List[float] = Accessory.RPY
             ) -> None:
         assert lidar3d or model, (
-            "Lidar3D object or model must be passed."
+            'Lidar3D object or model must be passed.'
         )
         if not lidar3d and model:
             lidar3d = Lidar3D(model)
@@ -640,7 +640,7 @@ class SensorConfig(BaseConfig):
                 rpy=rpy
             )
         assert isinstance(velodyne, VelodyneLidar), (
-            "Lidar3D object must be of type VelodyneLidar"
+            'Lidar3D object must be of type VelodyneLidar'
         )
         self._lidar3d.add(velodyne)
 
@@ -694,7 +694,7 @@ class SensorConfig(BaseConfig):
             rpy: List[float] = Accessory.RPY
             ) -> None:
         assert camera or model, (
-            "Camera object or model must be passed."
+            'Camera object or model must be passed.'
         )
         if not camera and model:
             camera = Camera(model)
@@ -737,7 +737,7 @@ class SensorConfig(BaseConfig):
                 rpy=rpy,
             )
         assert isinstance(blackfly, FlirBlackfly), (
-            "Blackfly object must be of type Blackfly"
+            'Blackfly object must be of type Blackfly'
         )
         self._camera.add(blackfly)
 
@@ -786,7 +786,7 @@ class SensorConfig(BaseConfig):
                 rpy=rpy,
             )
         assert isinstance(realsense, IntelRealsense), (
-            "Realsense object must be of type Realsense"
+            'Realsense object must be of type Realsense'
         )
         self._camera.add(realsense)
 
@@ -844,7 +844,7 @@ class SensorConfig(BaseConfig):
             rpy: List[float] = Accessory.RPY
             ) -> None:
         assert imu or model, (
-            "IMU object or model must be passed."
+            'IMU object or model must be passed.'
         )
         if not imu and model:
             imu = InertialMeasurementUnit(model)
@@ -885,7 +885,7 @@ class SensorConfig(BaseConfig):
                 rpy=rpy
             )
         assert isinstance(imu, Microstrain), (
-            "IMU object must be of type Microstrain"
+            'IMU object must be of type Microstrain'
         )
         self._imu.add(imu)
 
@@ -938,7 +938,7 @@ class SensorConfig(BaseConfig):
             rpy: List[float] = Accessory.RPY
             ) -> None:
         assert gps or model, (
-            "GPS object or model must be passed."
+            'GPS object or model must be passed.'
         )
         if not gps and model:
             gps = GlobalPositioningSystem(model)
@@ -977,7 +977,7 @@ class SensorConfig(BaseConfig):
                 rpy=rpy
             )
         assert isinstance(duro, SwiftNavDuro), (
-            "GPS object must be of type UST"
+            'GPS object must be of type UST'
         )
         self._gps.add(duro)
 

@@ -37,9 +37,9 @@ import os
 
 
 class BaseSensor(IndexedAccessory):
-    SENSOR_TYPE = "generic"
-    SENSOR_MODEL = "base"
-    TOPIC = "base"
+    SENSOR_TYPE = 'generic'
+    SENSOR_MODEL = 'base'
+    TOPIC = 'base'
     URDF_ENABLED = True
     LAUNCH_ENABLED = True
     ROS_PARAMETERS = {}
@@ -127,14 +127,14 @@ class BaseSensor(IndexedAccessory):
 
     @classmethod
     def get_name_from_idx(cls, idx: int) -> str:
-        return "%s_%s" % (
+        return '%s_%s' % (
             cls.get_sensor_type(),
             idx
         )
 
     @classmethod
     def get_topic_from_idx(cls, idx: int) -> str:
-        return "%s/%s" % (
+        return '%s/%s' % (
             cls.get_name_from_idx(idx),
             cls.TOPIC
         )
@@ -145,17 +145,17 @@ class BaseSensor(IndexedAccessory):
 
     def get_topic(self, topic: str, local=False) -> str:
         assert topic in self.TOPICS.NAME, (
-            "Topic must be one of %s" % [i for i in self.TOPICS.NAME]
+            'Topic must be one of %s' % [i for i in self.TOPICS.NAME]
         )
         if local:
-            return os.path.join("sensors", self.name, self.TOPICS.NAME[topic])
+            return os.path.join('sensors', self.name, self.TOPICS.NAME[topic])
         else:
             ns = BaseConfig.get_namespace()
-            return os.path.join(ns, "sensors", self.name, self.TOPICS.NAME[topic])
+            return os.path.join(ns, 'sensors', self.name, self.TOPICS.NAME[topic])
 
     def get_topic_rate(self, topic: str) -> float:
         assert topic in self.TOPICS.RATE, (
-            "Topic must be one of %s" % [i for i in self.TOPICS.RATE]
+            'Topic must be one of %s' % [i for i in self.TOPICS.RATE]
         )
         if isinstance(self.TOPICS.RATE[topic], property):
             return self.TOPICS.RATE[topic].fget.__get__(self)
@@ -164,10 +164,10 @@ class BaseSensor(IndexedAccessory):
 
     def set_topic(self, topic: str) -> None:
         assert isinstance(topic, str), (
-            "Topic '%s' of type '%s', expected 'str'" % (topic, type(topic))
+            'Topic '%s' of type '%s', expected 'str'' % (topic, type(topic))
         )
-        assert " " not in topic, (
-            "Topic '%s' contains empty spaces." % topic
+        assert ' ' not in topic, (
+            'Topic '%s' contains empty spaces.' % topic
         )
         self.topic = topic
 
@@ -201,12 +201,12 @@ class BaseSensor(IndexedAccessory):
 
     @ros_parameters_template.setter
     def ros_parameters_template(self, d: dict) -> None:
-        assert isinstance(d, dict), ("Template must be of type 'dict'")
+        assert isinstance(d, dict), ('Template must be of type 'dict'')
         # Check that template has all properties
         flat = flatten_dict(d)
         for _, val in flat.items():
             assert isinstance(val, property), (
-                "All entries in template must be properties."
+                'All entries in template must be properties.'
             )
         self._ros_parameters_template = d
 
@@ -222,7 +222,7 @@ class BaseSensor(IndexedAccessory):
 
     @ros_parameters.setter
     def ros_parameters(self, d: dict) -> None:
-        assert isinstance(d, dict), ("ROS paramaters must be a dictionary")
+        assert isinstance(d, dict), ('ROS paramaters must be a dictionary')
         for d_k, d_v in flatten_dict(d).items():
             for key, prop in flatten_dict(self.ros_parameters_template).items():
                 if d_k == key:

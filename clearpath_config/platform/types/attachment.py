@@ -32,10 +32,10 @@ from typing import List
 
 class BaseAttachment(Accessory):
     PLATFORM = Platform.GENERIC
-    ATTACHMENT_MODEL = "%s.attachment" % PLATFORM
+    ATTACHMENT_MODEL = '%s.attachment' % PLATFORM
     ENABLED = True
     # Models
-    DEFAULT = "default"
+    DEFAULT = 'default'
     MODELS = [DEFAULT]
 
     def __init__(
@@ -48,8 +48,8 @@ class BaseAttachment(Accessory):
             rpy: List[float] = ...
             ) -> None:
         super().__init__(name, parent, xyz, rpy)
-        self.platform = self.ATTACHMENT_MODEL.split(".")[0]
-        self.file = self.ATTACHMENT_MODEL.split(".")[-1]
+        self.platform = self.ATTACHMENT_MODEL.split('.')[0]
+        self.file = self.ATTACHMENT_MODEL.split('.')[-1]
         self.model = self.DEFAULT
         self.enabled = self.ENABLED
         self.set_model(model)
@@ -79,13 +79,7 @@ class BaseAttachment(Accessory):
         return self.model
 
     def set_model(self, model: str) -> None:
-        assert model in self.MODELS, (
-            "%s model '%s' is not one of: '%s'" % (
-                self.ATTACHMENT_MODEL.title(),
-                model,
-                self.MODELS,
-            )
-        )
+        assert model in self.MODELS, f'{self.ATTACHMENT_MODEL.title()} model "{model}" is not not of "{self.MODELS}"'  # noqa:E501
         self.model = model
 
 
@@ -98,9 +92,5 @@ class PlatformAttachment(BaseAttachment):
         return type in cls.TYPES
 
     def __new__(cls, type: str) -> BaseAttachment:
-        assert cls.is_valid(type), "%s does not have attachment: '%s'. Must be one of '%s'" % (
-            cls.PLATFORM,
-            type,
-            cls.TYPES
-        )
+        assert cls.is_valid(type), f'{cls.PLATFORM} does not have attachment "{type}". Must be one of "{cls.TYPES}"'  # noqa:E501
         return cls.TYPES[type]
