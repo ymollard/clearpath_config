@@ -25,31 +25,32 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.accessory import Accessory
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.types.list import OrderedListConfig
 from clearpath_config.common.types.platform import Platform
 from clearpath_config.common.utils.dictionary import flip_dict
-from clearpath_config.sensors.types.sensor import BaseSensor
 from clearpath_config.sensors.types.cameras import (
     BaseCamera,
     FlirBlackfly,
     IntelRealsense,
-    StereolabsZed,
     LuxonisOAKD,
+    StereolabsZed,
 )
 from clearpath_config.sensors.types.gps import (
     BaseGPS,
-    SwiftNavDuro,
-    MicrostrainGQ7,
     Garmin18x,
+    MicrostrainGQ7,
     NovatelSmart6,
     NovatelSmart7,
+    SwiftNavDuro,
 )
 from clearpath_config.sensors.types.imu import (
     BaseIMU,
-    Microstrain,
     CHRoboticsUM6,
+    Microstrain,
     PhidgetsSpatial,
     RedshiftUM7,
 )
@@ -62,8 +63,7 @@ from clearpath_config.sensors.types.lidars_3d import (
     BaseLidar3D,
     VelodyneLidar,
 )
-
-from typing import List
+from clearpath_config.sensors.types.sensor import BaseSensor
 
 
 class InertialMeasurementUnit():
@@ -290,9 +290,9 @@ class SensorConfig(BaseConfig):
     def camera(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Sensors must be list of "dict"')
-        assert all([isinstance(d, dict) for d in value]), (
+        assert all([isinstance(d, dict) for d in value]), (  # noqa: C419
             'Sensors must be list of "dict"')
-        assert all(['model' in d for d in value]), (
+        assert all(['model' in d for d in value]), (  # noqa: C419
             'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
@@ -313,9 +313,9 @@ class SensorConfig(BaseConfig):
     def gps(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Sensors must be list of "dict"')
-        assert all([isinstance(d, dict) for d in value]), (
+        assert all([isinstance(d, dict) for d in value]), (  # noqa: C419
             'Sensors must be list of "dict"')
-        assert all(['model' in d for d in value]), (
+        assert all(['model' in d for d in value]), (  # noqa: C419
             'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
@@ -336,9 +336,9 @@ class SensorConfig(BaseConfig):
     def imu(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Sensors must be list of "dict"')
-        assert all([isinstance(d, dict) for d in value]), (
+        assert all([isinstance(d, dict) for d in value]), (  # noqa: C419
             'Sensors must be list of "dict"')
-        assert all(['model' in d for d in value]), (
+        assert all(['model' in d for d in value]), (  # noqa: C419
             'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
@@ -359,9 +359,9 @@ class SensorConfig(BaseConfig):
     def lidar2d(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Sensors must be list of "dict"')
-        assert all([isinstance(d, dict) for d in value]), (
+        assert all([isinstance(d, dict) for d in value]), (  # noqa: C419
             'Sensors must be list of "dict"')
-        assert all(['model' in d for d in value]), (
+        assert all(['model' in d for d in value]), (  # noqa: C419
             'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
@@ -382,9 +382,9 @@ class SensorConfig(BaseConfig):
     def lidar3d(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Sensors must be list of "dict"')
-        assert all([isinstance(d, dict) for d in value]), (
+        assert all([isinstance(d, dict) for d in value]), (  # noqa: C419
             'Sensors must be list of "dict"')
-        assert all(['model' in d for d in value]), (
+        assert all(['model' in d for d in value]), (  # noqa: C419
             'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:

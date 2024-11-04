@@ -25,10 +25,11 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from clearpath_config.common.types.accessory import Accessory
-from clearpath_config.sensors.types.sensor import BaseSensor
-from clearpath_config.common.utils.dictionary import extend_flat_dict
 from typing import List
+
+from clearpath_config.common.types.accessory import Accessory
+from clearpath_config.common.utils.dictionary import extend_flat_dict
+from clearpath_config.sensors.types.sensor import BaseSensor
 
 
 class Republisher():
@@ -55,11 +56,11 @@ class Republisher():
             }
 
         @property
-        def input(self) -> str:
+        def input(self) -> str:  # noqa:A003
             return self._input
 
         @input.setter
-        def input(self, value: str) -> None:
+        def input(self, value: str) -> None:  # noqa:A003
             self._input = value
 
         @property
@@ -99,7 +100,7 @@ class Republisher():
 
     def __new__(self, config: dict) -> None:
         assert self.TYPE in config, f'Republisher must have "{self.TYPE}" specified'
-        assert config[self.TYPE] in self.TYPES, f'Republisher "{self.TYPE}" must be one of "{[t for t in self.TYPES]}"'  # noqa:E501
+        assert config[self.TYPE] in self.TYPES, f'Republisher "{self.TYPE}" must be one of "{self.TYPES.keys()}"'  # noqa:E501
         return self.TYPES[config[self.TYPE]](config)
 
 
@@ -218,7 +219,7 @@ class BaseCamera(BaseSensor):
     def republishers(self, republishers: list) -> None:
         assert isinstance(republishers, list), (
             'Camera republishers must be a list of dictionaries')
-        assert all([isinstance(i, dict) for i in republishers]), (
+        assert all([isinstance(i, dict) for i in republishers]), (  # noqa: C419
             'Camera republishers must be a list of dictionaries')
         self._republishers = []
         for republisher in republishers:
@@ -381,7 +382,7 @@ class IntelRealsense(BaseCamera):
         else:
             assert len(profile) == 3, (
                 'Profile "%s" is not three integer values')
-            assert all([isinstance(entry, int) for entry in profile]), (
+            assert all([isinstance(entry, int) for entry in profile]), (  # noqa: C419
                 'Profile "%s" is not three integer values')
         return profile
 
@@ -754,9 +755,9 @@ class FlirBlackfly(BaseCamera):
         return self._connection_type
 
     @connection_type.setter
-    def connection_type(self, type: str) -> None:
-        assert type in FlirBlackfly.CONNECTION_TYPES
-        self._connection_type = type
+    def connection_type(self, _type: str) -> None:
+        assert _type in FlirBlackfly.CONNECTION_TYPES
+        self._connection_type = _type
 
     def set_connection_type(self, connection_type: str) -> None:
         self.connection_type = connection_type

@@ -25,8 +25,10 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from clearpath_config.common.types.serial_number import SerialNumber
+from typing import Any
+
 from clearpath_config.common.types.namespace import Namespace
+from clearpath_config.common.types.serial_number import SerialNumber
 from clearpath_config.common.utils.dictionary import (
     flatten_dict,
     get_from_dict,
@@ -34,7 +36,6 @@ from clearpath_config.common.utils.dictionary import (
     set_in_dict,
     unflatten_dict
 )
-from typing import Any
 
 
 class BaseConfig:
@@ -96,7 +97,7 @@ class BaseConfig:
         if self._parent_key is not None and self._parent_key not in value:
             value = {self._parent_key: value}
         value = unflatten_dict(value)
-        for map, prop in flatten_dict(
+        for map, prop in flatten_dict(  # noqa:A001
                 d=self.template, dlim=BaseConfig.DLIM).items():
             keys = map.split(BaseConfig.DLIM)
             if is_in_dict(value, keys):

@@ -25,12 +25,13 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.types.hostname import Hostname
 from clearpath_config.common.types.ip import IP
 from clearpath_config.common.types.list import ListConfig
 from clearpath_config.common.utils.dictionary import flip_dict
-from typing import List
 
 
 # HostConfig

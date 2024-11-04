@@ -284,7 +284,7 @@ class ExtrasConfig(BaseConfig):
             )
 
     def _is_ros_parameter(self, key) -> bool:
-        return any([key in i for i in self._ros_parameters_setters])
+        return any([key in i for i in self._ros_parameters_setters])  # noqa:C419
 
     def _is_ros_parameter_default(self, key) -> bool:
         default_parameters = self.DEFAULTS[self.ROS_PARAMETERS]

@@ -44,7 +44,7 @@ class BaseManipulator(IndexedAccessory):
                 self,
                 key: str,
                 get: Callable,
-                set: Callable
+                set: Callable  # noqa:A002
                 ) -> None:
             self.key = key
             self.get = get

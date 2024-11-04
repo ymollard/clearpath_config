@@ -25,10 +25,11 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from clearpath_config.common.types.accessory import Accessory
-from clearpath_config.links.types.link import BaseLink
-from clearpath_config.common.types.package_path import PackagePath
 from typing import List
+
+from clearpath_config.common.types.accessory import Accessory
+from clearpath_config.common.types.package_path import PackagePath
+from clearpath_config.links.types.link import BaseLink
 
 
 class Mesh(BaseLink):

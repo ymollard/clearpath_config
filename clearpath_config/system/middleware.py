@@ -25,7 +25,6 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-
 import os
 from typing import List
 
@@ -35,7 +34,7 @@ from clearpath_config.common.types.hostname import Hostname
 from clearpath_config.common.types.rmw_implementation import RMWImplementation
 from clearpath_config.common.utils.dictionary import flip_dict
 from clearpath_config.system.hosts import HostListConfig
-from clearpath_config.system.servers import ServerListConfig, ServerConfig
+from clearpath_config.system.servers import ServerConfig, ServerListConfig
 
 
 class MiddlewareConfig(BaseConfig):
@@ -189,7 +188,7 @@ class MiddlewareConfig(BaseConfig):
         # Generate a list of ServerConfig Objects based on how the input was provided
         server_list = []
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), (
+            assert all([isinstance(i, dict) for i in value]), (  # noqa:C419
                 f'Server {value} is invalid, must be list of ' +
                 'type "dict" or of type "ServerListConfig"'
             )

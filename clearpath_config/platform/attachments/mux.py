@@ -29,8 +29,8 @@ from clearpath_config.common.types.platform import Platform
 from clearpath_config.platform.attachments.a200 import A200Attachment
 from clearpath_config.platform.attachments.config import AttachmentsConfig
 from clearpath_config.platform.attachments.dd100 import DD100Attachment
-from clearpath_config.platform.attachments.do100 import DO100Attachment
 from clearpath_config.platform.attachments.dd150 import DD150Attachment
+from clearpath_config.platform.attachments.do100 import DO100Attachment
 from clearpath_config.platform.attachments.do150 import DO150Attachment
 from clearpath_config.platform.attachments.generic import GENERICAttachment
 from clearpath_config.platform.attachments.j100 import J100Attachment
@@ -54,7 +54,7 @@ class AttachmentsConfigMux:
 
     def __new__(cls, platform: str, attachments: dict = None) -> AttachmentsConfig:
         # Check Platform is Supported
-        assert platform in cls.PLATFORM, f'Platform "{platform}" must be one of "{self.PLATFORM.keys()}"'  # noqa:E501
+        assert platform in cls.PLATFORM, f'Platform "{platform}" must be one of "{cls.PLATFORM.keys()}"'  # noqa:E501
         if not attachments:
             return cls.PLATFORM[platform]
         # Pre-Process Entries

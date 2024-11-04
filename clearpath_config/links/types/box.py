@@ -25,9 +25,10 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.accessory import Accessory
 from clearpath_config.links.types.link import BaseLink
-from typing import List
 
 
 class Box(BaseLink):
@@ -68,7 +69,7 @@ class Box(BaseLink):
     def set_size(self, size: List[float]) -> None:
         msg = 'Box size must be a list of three positive floats'
         Accessory.assert_valid_triplet(size, msg)
-        assert all([i >= 0.0 for i in size]), msg
+        assert all([i >= 0.0 for i in size]), msg  # noqa:C419
         self.size = size
 
     def get_size(self) -> List[float]:

@@ -25,8 +25,9 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from clearpath_config.common.types.list import ListConfig
 from typing import List
+
+from clearpath_config.common.types.list import ListConfig
 
 
 class CANBridge:
@@ -75,7 +76,7 @@ class CANBridge:
         self.auto_activate = auto_activate
 
     def to_dict(self) -> dict:
-        d = dict()
+        d = {}
         d[self.INTERFACE] = self.interface
         d[self.ENABLE_CAN_FD] = self.enaled_can_fd
         d[self.INTERVAL] = self.interval

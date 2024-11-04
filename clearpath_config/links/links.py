@@ -25,17 +25,18 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.accessory import Accessory
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.types.list import ListConfig
 from clearpath_config.common.utils.dictionary import flip_dict
-from clearpath_config.links.types.link import BaseLink
 from clearpath_config.links.types.box import Box
 from clearpath_config.links.types.cylinder import Cylinder
 from clearpath_config.links.types.frame import Frame
+from clearpath_config.links.types.link import BaseLink
 from clearpath_config.links.types.mesh import Mesh
 from clearpath_config.links.types.sphere import Sphere
-from typing import List
 
 
 class Link():
@@ -144,7 +145,7 @@ class LinksConfig(BaseConfig):
     @frame.setter
     def frame(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'  # noqa:C419, E501
             links = LinkListConfig()
             link_list = []
             for d in value:
@@ -167,7 +168,7 @@ class LinksConfig(BaseConfig):
     @box.setter
     def box(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'  # noqa:C419, E501
             links = LinkListConfig()
             link_list = []
             for d in value:
@@ -190,7 +191,7 @@ class LinksConfig(BaseConfig):
     @cylinder.setter
     def cylinder(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'  # noqa:C419, E501
             links = LinkListConfig()
             link_list = []
             for d in value:
@@ -213,7 +214,7 @@ class LinksConfig(BaseConfig):
     @mesh.setter
     def mesh(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'  # noqa:C419, E501
             links = LinkListConfig()
             link_list = []
             for d in value:
@@ -236,7 +237,7 @@ class LinksConfig(BaseConfig):
     @sphere.setter
     def sphere(self, value: List[dict] | LinkListConfig) -> None:
         if isinstance(value, list):
-            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'
+            assert all([isinstance(i, dict) for i in value]), 'Links must be of type "dict"'  # noqa:C419, E501
             links = LinkListConfig()
             link_list = []
             for d in value:

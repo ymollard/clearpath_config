@@ -25,9 +25,10 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.accessory import Accessory
 from clearpath_config.mounts.types.mount import BaseMount
-from typing import List
 
 
 # PACS
@@ -153,5 +154,5 @@ class PACS:
             return self.model
 
         def set_model(self, model: str) -> None:
-            assert model in self.MODELS, f'Unexpected Bracket model "{model}". It must be one of "{self.MODELS}"'  # noaq:E501
+            assert model in self.MODELS, f'Unexpected Bracket model "{model}". It must be one of "{self.MODELS}"'  # noqa:E501
             self.model = model

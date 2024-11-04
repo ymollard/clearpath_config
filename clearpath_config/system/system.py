@@ -269,6 +269,6 @@ class SystemConfig(BaseConfig):
     def workspaces(self, value: list) -> None:
         assert isinstance(value, list), (
             'Workspaces must be "list" of "str"')
-        assert all([isinstance(i, str) for i in value]), (
+        assert all([isinstance(i, str) for i in value]), (  # noqa:C419
             'Workspaces must be "list" of "str"')
         self._workspaces = value

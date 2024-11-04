@@ -25,17 +25,18 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.types.list import OrderedListConfig
 from clearpath_config.common.utils.dictionary import flip_dict
+from clearpath_config.mounts.types.disk import Disk
 from clearpath_config.mounts.types.fath_pivot import FathPivot
 from clearpath_config.mounts.types.flir_ptu import FlirPTU
 from clearpath_config.mounts.types.mount import BaseMount
 from clearpath_config.mounts.types.pacs import PACS
 from clearpath_config.mounts.types.post import Post
 from clearpath_config.mounts.types.sick import SICKStand
-from clearpath_config.mounts.types.disk import Disk
-from typing import List
 
 
 class Mount():
@@ -139,7 +140,7 @@ class MountsConfig(BaseConfig):
     def bracket(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Mounts must be list of type "dict"')
-        assert all([isinstance(i, dict) for i in value]), (
+        assert all([isinstance(i, dict) for i in value]), (  # noqa:C419
             'Mounts must be list of type "dict"')
         mounts = MountListConfig()
         mount_list = []
@@ -162,7 +163,7 @@ class MountsConfig(BaseConfig):
     def riser(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Mounts must be list of "dict"')
-        assert all([isinstance(i, dict) for i in value]), (
+        assert all([isinstance(i, dict) for i in value]), (  # noqa:C419
             'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
@@ -185,7 +186,7 @@ class MountsConfig(BaseConfig):
     def fath_pivot(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Mounts must be list of "dict"')
-        assert all([isinstance(i, dict) for i in value]), (
+        assert all([isinstance(i, dict) for i in value]), (  # noqa:C419
             'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
@@ -208,7 +209,7 @@ class MountsConfig(BaseConfig):
     def sick_stand(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Mounts must be list of "dict"')
-        assert all([isinstance(i, dict) for i in value]), (
+        assert all([isinstance(i, dict) for i in value]), (  # noqa:C419
             'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
@@ -231,7 +232,7 @@ class MountsConfig(BaseConfig):
     def post(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Mounts must be list of "dict"')
-        assert all([isinstance(i, dict) for i in value]), (
+        assert all([isinstance(i, dict) for i in value]), (  # noqa:C419
             'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []
@@ -254,7 +255,7 @@ class MountsConfig(BaseConfig):
     def disk(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
             'Mounts must be list of "dict"')
-        assert all([isinstance(i, dict) for i in value]), (
+        assert all([isinstance(i, dict) for i in value]), (  # noqa:C419
             'Mounts must be list of "dict"')
         mounts = MountListConfig()
         mount_list = []

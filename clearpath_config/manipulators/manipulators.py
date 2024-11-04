@@ -87,7 +87,7 @@ class ManipulatorConfig(BaseConfig):
     @arms.setter
     def arms(self, value: List[dict]) -> None:
         assert isinstance(value, list), 'Manipulators must be of type "dict"'
-        assert all([isinstance(i, dict) for i in value]), 'Manipulators must be of type "dict"'
+        assert all([isinstance(i, dict) for i in value]), 'Manipulators must be of type "dict"'  # noqa:C419, E501
         arms_list = []
         for d in value:
             arm = Arm(d['model'])

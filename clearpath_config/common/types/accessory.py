@@ -27,6 +27,8 @@
 # POSSIBILITY OF SUCH DAMAGE.
 from typing import List
 
+from clearpath_config.common.types.exception import UnsupportedAccessoryException
+
 
 class Accessory():
     # Defaults
@@ -46,10 +48,10 @@ class Accessory():
         if self.is_deprecated:
             print(f'{type(self)} is deprecated')
 
-        self.name = str()
-        self.parent = str()
-        self.xyz = list()
-        self.rpy = list()
+        self.name = ''
+        self.parent = ''
+        self.xyz = []
+        self.rpy = []
         self.set_name(name)
         self.set_parent(parent)
         self.set_xyz(xyz)
@@ -127,7 +129,7 @@ class Accessory():
         # Triplet must have a length of 3
         assert len(tri) == 3, msg
         # Triplet must be all floats
-        assert all([isinstance(i, float) for i in tri])
+        assert all([isinstance(i, float) for i in tri])  # noqa:C419
 
     @staticmethod
     def assert_is_supported():
@@ -150,14 +152,17 @@ class Accessory():
         try:
             self.assert_is_supported()
             return True
-        except:
+        except UnsupportedAccessoryException:
             return False
 
     @property
     def is_deprecated(self):
         """
-        Override this method to indicate that this accessory has been deprecated and may be
-        removed at a future date.
+        Override this method to indicate that this accessory has been deprecated.
+
+        Deprecated accessories may be removed completely in the future.  See:
+        - is_supported
+        - assert_is_supported
 
         When flagging an accessory for deprecation, simply override it to return True
         """

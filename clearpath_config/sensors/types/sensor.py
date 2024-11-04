@@ -25,15 +25,16 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+import copy
+import os
+from typing import Callable, List
+
 from clearpath_config.common.types.accessory import Accessory, IndexedAccessory
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.utils.dictionary import (
     flatten_dict,
     unflatten_dict
 )
-from typing import List, Callable
-import copy
-import os
 
 
 class BaseSensor(IndexedAccessory):
@@ -54,7 +55,7 @@ class BaseSensor(IndexedAccessory):
                 self,
                 key: str,
                 get: Callable,
-                set: Callable
+                set: Callable  # noqa:A002
                 ) -> None:
             self.key = key
             self.get = get
@@ -144,9 +145,7 @@ class BaseSensor(IndexedAccessory):
         self.topic = self.get_topic_from_idx(idx)
 
     def get_topic(self, topic: str, local=False) -> str:
-        assert topic in self.TOPICS.NAME, (
-            'Topic must be one of %s' % [i for i in self.TOPICS.NAME]
-        )
+        assert topic in self.TOPICS.NAME, f'Topic must be one of {self.TOPICS.NAME.keys()}'
         if local:
             return os.path.join('sensors', self.name, self.TOPICS.NAME[topic])
         else:
@@ -154,16 +153,14 @@ class BaseSensor(IndexedAccessory):
             return os.path.join(ns, 'sensors', self.name, self.TOPICS.NAME[topic])
 
     def get_topic_rate(self, topic: str) -> float:
-        assert topic in self.TOPICS.RATE, (
-            'Topic must be one of %s' % [i for i in self.TOPICS.RATE]
-        )
+        assert topic in self.TOPICS.RATE, f'Topic must be one of {self.TOPICS.RATE.keys()}'
         if isinstance(self.TOPICS.RATE[topic], property):
             return self.TOPICS.RATE[topic].fget.__get__(self)
         else:
             return self.TOPICS.RATE[topic]
 
     def set_topic(self, topic: str) -> None:
-        assert isinstance(topic, str), f'Topic "{topic}" is of type "{type(topic)}", expected "str"'
+        assert isinstance(topic, str), f'Topic "{topic}" is of type "{type(topic)}", expected "str"'  # noqa:501
         assert ' ' not in topic, f'Topic "{topic}" contains whitespace'
         self.topic = topic
 

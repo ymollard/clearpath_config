@@ -25,9 +25,10 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.accessory import Accessory
 from clearpath_config.common.types.platform import Platform
-from typing import List
 
 
 class BaseAttachment(Accessory):
@@ -88,9 +89,9 @@ class PlatformAttachment(BaseAttachment):
     TYPES = {}
 
     @classmethod
-    def is_valid(cls, type: str) -> bool:
-        return type in cls.TYPES
+    def is_valid(cls, _type: str) -> bool:
+        return _type in cls.TYPES
 
-    def __new__(cls, type: str) -> BaseAttachment:
-        assert cls.is_valid(type), f'{cls.PLATFORM} does not have attachment "{type}". Must be one of "{cls.TYPES}"'  # noqa:E501
-        return cls.TYPES[type]
+    def __new__(cls, _type: str) -> BaseAttachment:
+        assert cls.is_valid(type), f'{cls.PLATFORM} does not have attachment "{_type}". Must be one of "{cls.TYPES}"'  # noqa:E501
+        return cls.TYPES[_type]

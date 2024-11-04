@@ -133,7 +133,7 @@ class ListConfig(Generic[T, U]):
     def get_all(self) -> List[T]:
         return self.__list
 
-    def set(
+    def set(  # noqa:A003
             self,
             obj: T
             ) -> None:
@@ -260,7 +260,7 @@ class OrderedListConfig(Generic[T]):
             ) -> List[T]:
         return self.__list
 
-    def set(
+    def set(  # noqa:A003
             self,
             obj: T
             ) -> None:

@@ -25,15 +25,15 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from clearpath_config.common.types.platform import Platform
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.types.package_path import PackagePath
+from clearpath_config.common.types.platform import Platform
 from clearpath_config.common.utils.dictionary import flip_dict
-from clearpath_config.platform.battery import BatteryConfig
-from clearpath_config.platform.extras import ExtrasConfig
 from clearpath_config.platform.attachments.config import AttachmentsConfig
 from clearpath_config.platform.attachments.mux import AttachmentsConfigMux
+from clearpath_config.platform.battery import BatteryConfig
 from clearpath_config.platform.can import CANBridgeConfig
+from clearpath_config.platform.extras import ExtrasConfig
 
 
 class DescriptionPackagePath(PackagePath):
@@ -203,7 +203,7 @@ class PlatformConfig(BaseConfig):
 
     @controller.setter
     def controller(self, value: str) -> None:
-        assert value.lower() in [self.PS4, self.LOGITECH], f'"{value.lower()}" controller is invalid. Must be one of "{[self.PS4, self.LOGITECH]}"'
+        assert value.lower() in [self.PS4, self.LOGITECH], f'"{value.lower()}" controller is invalid. Must be one of "{[self.PS4, self.LOGITECH]}"'  # noqa:501
         self._controller = value.lower()
 
     @property
