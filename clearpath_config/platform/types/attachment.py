@@ -93,5 +93,5 @@ class PlatformAttachment(BaseAttachment):
         return _type in cls.TYPES
 
     def __new__(cls, _type: str) -> BaseAttachment:
-        assert cls.is_valid(type), f'{cls.PLATFORM} does not have attachment "{_type}". Must be one of "{cls.TYPES}"'  # noqa:E501
+        assert cls.is_valid(_type), f'{cls.PLATFORM} does not have attachment "{_type}". Must be one of "{cls.TYPES}"'  # noqa:E501
         return cls.TYPES[_type]
