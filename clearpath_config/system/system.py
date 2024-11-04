@@ -148,7 +148,7 @@ class SystemConfig(BaseConfig):
         if isinstance(value, list):
             for d in value:
                 assert isinstance(d, dict), (
-                    f'Host value of {d} is invalid, it must be of type 'dict''
+                    f'Host value of {d} is invalid, it must be of type "dict"'
                 )
                 host_list.append(HostConfig(config=d))
 
@@ -168,7 +168,7 @@ class SystemConfig(BaseConfig):
         else:
             assert isinstance(value, list) or isinstance(value, HostConfig), (
                 f'Hosts value of {value} is invalid, ' +
-                'it must be of type 'List[dict]' or 'HostListConfig''
+                'it must be of type "List[dict]" or "HostListConfig"'
             )
 
     @property
@@ -182,7 +182,7 @@ class SystemConfig(BaseConfig):
     @localhost.setter
     def localhost(self, value: str | Hostname) -> None:
         assert isinstance(value, str) or isinstance(value, Hostname), (
-            f'Localhost of {value} is invalid, must be of type 'str' or 'Hostname''
+            f'Localhost of {value} is invalid, must be of type "str" or "Hostname"'
         )
         if isinstance(value, str):
             self._localhost = Hostname(value)
@@ -205,7 +205,7 @@ class SystemConfig(BaseConfig):
             self._username = value
         else:
             assert isinstance(value, str) or isinstance(value, Username), (
-                'Username must be of type 'str' or 'Username''
+                'Username must be of type "str" or "Username"'
             )
 
     @property
@@ -236,7 +236,7 @@ class SystemConfig(BaseConfig):
             self._domain_id = value
         else:
             assert isinstance(value, int) or isinstance(value, DomainID), (
-                'Domain ID must be of type 'int' or 'DomainID''
+                'Domain ID must be of type "int" or "DomainID"'
             )
 
     @property
@@ -258,7 +258,7 @@ class SystemConfig(BaseConfig):
         else:
             assert isinstance(value, dict) or (
                 isinstance(value, MiddlewareConfig)), (
-                'Middleware configuration must be of type 'dict' or 'MiddlewareConfig''
+                'Middleware configuration must be of type "dict" or "MiddlewareConfig"'
             )
 
     @property
@@ -268,7 +268,7 @@ class SystemConfig(BaseConfig):
     @workspaces.setter
     def workspaces(self, value: list) -> None:
         assert isinstance(value, list), (
-            'Workspaces must be 'list' of 'str'')
+            'Workspaces must be "list" of "str"')
         assert all([isinstance(i, str) for i in value]), (
-            'Workspaces must be 'list' of 'str'')
+            'Workspaces must be "list" of "str"')
         self._workspaces = value

@@ -264,7 +264,7 @@ class VelodyneLidar(BaseLidar3D):
     @device_type.setter
     def device_type(self, device_type) -> None:
         assert device_type in self.DEVICE_TYPES, (
-            'Device type '%s' is not one of '%s'' % (
+            'Device type "%s" is not one of "%s"' % (
                 device_type,
                 self.DEVICE_TYPES
             )

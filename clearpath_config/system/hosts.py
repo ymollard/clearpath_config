@@ -96,7 +96,7 @@ class HostConfig(BaseConfig):
             self._hostname = value
         else:
             assert isinstance(value, str) or isinstance(value, Hostname), (
-                f'Hostname of {value} is invalid, must be of type 'str' or 'Hostname''
+                f'Hostname of {value} is invalid, must be of type "str" or "Hostname"'
             )
 
     # IP Address:
@@ -117,7 +117,7 @@ class HostConfig(BaseConfig):
             self._ip = value
         else:
             assert isinstance(value, dict) or isinstance(value, IP), (
-                f'IP address of {value} is invalid, must be of type 'str' or 'IP''
+                f'IP address of {value} is invalid, must be of type "str" or "IP"'
             )
 
 

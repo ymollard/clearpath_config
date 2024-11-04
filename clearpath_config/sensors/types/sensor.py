@@ -163,12 +163,8 @@ class BaseSensor(IndexedAccessory):
             return self.TOPICS.RATE[topic]
 
     def set_topic(self, topic: str) -> None:
-        assert isinstance(topic, str), (
-            'Topic '%s' of type '%s', expected 'str'' % (topic, type(topic))
-        )
-        assert ' ' not in topic, (
-            'Topic '%s' contains empty spaces.' % topic
-        )
+        assert isinstance(topic, str), f'Topic "{topic}" is of type "{type(topic)}", expected "str"'
+        assert ' ' not in topic, f'Topic "{topic}" contains whitespace'
         self.topic = topic
 
     def enable_urdf(self) -> None:
@@ -201,7 +197,7 @@ class BaseSensor(IndexedAccessory):
 
     @ros_parameters_template.setter
     def ros_parameters_template(self, d: dict) -> None:
-        assert isinstance(d, dict), ('Template must be of type 'dict'')
+        assert isinstance(d, dict), ('Template must be of type "dict"')
         # Check that template has all properties
         flat = flatten_dict(d)
         for _, val in flat.items():

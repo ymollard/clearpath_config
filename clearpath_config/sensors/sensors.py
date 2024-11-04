@@ -80,12 +80,7 @@ class InertialMeasurementUnit():
 
     @classmethod
     def assert_model(cls, model: str) -> None:
-        assert model in cls.MODEL, (
-            'Model '%s' must be one of: '%s'' % (
-                model,
-                cls.MODEL.keys()
-            )
-        )
+        assert model in cls.MODEL, f'Model "{model}" must be one of "{cls.MODEL.keys()}"'
 
     def __new__(cls, model: str) -> BaseIMU:
         cls.assert_model(model)
@@ -107,12 +102,7 @@ class Camera():
 
     @classmethod
     def assert_model(cls, model: str) -> None:
-        assert model in cls.MODEL, (
-            'Model '%s' must be one of: '%s'' % (
-                model,
-                cls.MODEL.keys()
-            )
-        )
+        assert model in cls.MODEL, f'Model "{model}" must be one of "{cls.MODEL.keys()}"'
 
     def __new__(cls, model: str) -> BaseCamera:
         cls.assert_model(model)
@@ -136,12 +126,7 @@ class GlobalPositioningSystem():
 
     @classmethod
     def assert_model(cls, model: str) -> None:
-        assert model in cls.MODEL, (
-            'Model '%s' must be one of: '%s'' % (
-                model,
-                cls.MODEL.keys()
-            )
-        )
+        assert model in cls.MODEL, f'Model "{model}" must be one of "{cls.MODEL.keys()}"'
 
     def __new__(cls, model: str) -> BaseGPS:
         cls.assert_model(model)
@@ -159,12 +144,7 @@ class Lidar2D():
 
     @classmethod
     def assert_model(cls, model: str) -> None:
-        assert model in cls.MODEL, (
-            'Model '%s' must be one of: '%s'' % (
-                model,
-                cls.MODEL.keys()
-            )
-        )
+        assert model in cls.MODEL, f'Model "{model}" must be one of "{cls.MODEL.keys()}"'
 
     def __new__(cls, model: str) -> BaseLidar2D:
         cls.assert_model(model)
@@ -180,12 +160,7 @@ class Lidar3D():
 
     @classmethod
     def assert_model(cls, model: str) -> None:
-        assert model in cls.MODEL, (
-            'Model '%s' must be one of: '%s'' % (
-                model,
-                cls.MODEL.keys()
-            )
-        )
+        assert model in cls.MODEL, f'Model "{model}" must be one of "{cls.MODEL.keys()}"'
 
     def __new__(cls, model: str) -> BaseLidar3D:
         cls.assert_model(model)
@@ -209,12 +184,7 @@ class Sensor():
 
     @classmethod
     def assert_type(cls, _type: str) -> None:
-        assert _type in cls.TYPE, (
-            'Sensor type '%s' must be one of: '%s'' % (
-                _type,
-                cls.TYPE.keys()
-            )
-        )
+        assert _type in cls.TYPE, f'Sensor type "{_type}" must be one of "{cls.TYPE.keys()}"'
 
     def __new__(cls, _type: str, _model: str) -> BaseSensor:
         cls.assert_type(_type)
@@ -319,11 +289,11 @@ class SensorConfig(BaseConfig):
     @camera.setter
     def camera(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all([isinstance(d, dict) for d in value]), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all(['model' in d for d in value]), (
-            'Sensor 'dict' must have 'model' key')
+            'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
             sensor = Camera(d['model'])
@@ -342,11 +312,11 @@ class SensorConfig(BaseConfig):
     @gps.setter
     def gps(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all([isinstance(d, dict) for d in value]), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all(['model' in d for d in value]), (
-            'Sensor 'dict' must have 'model' key')
+            'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
             sensor = GlobalPositioningSystem(d['model'])
@@ -365,11 +335,11 @@ class SensorConfig(BaseConfig):
     @imu.setter
     def imu(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all([isinstance(d, dict) for d in value]), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all(['model' in d for d in value]), (
-            'Sensor 'dict' must have 'model' key')
+            'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
             sensor = InertialMeasurementUnit(d['model'])
@@ -388,11 +358,11 @@ class SensorConfig(BaseConfig):
     @lidar2d.setter
     def lidar2d(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all([isinstance(d, dict) for d in value]), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all(['model' in d for d in value]), (
-            'Sensor 'dict' must have 'model' key')
+            'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
             sensor = Lidar2D(d['model'])
@@ -411,11 +381,11 @@ class SensorConfig(BaseConfig):
     @lidar3d.setter
     def lidar3d(self, value: List[dict]) -> None:
         assert isinstance(value, list), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all([isinstance(d, dict) for d in value]), (
-            'Sensors must be list of 'dict'')
+            'Sensors must be list of "dict"')
         assert all(['model' in d for d in value]), (
-            'Sensor 'dict' must have 'model' key')
+            'Sensor "dict" must have "model" key')
         sensor_list = []
         for d in value:
             sensor = Lidar3D(d['model'])

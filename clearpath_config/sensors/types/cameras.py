@@ -98,10 +98,8 @@ class Republisher():
     }
 
     def __new__(self, config: dict) -> None:
-        assert self.TYPE in config, (
-            'Republisher must have '%s' specified.' % self.TYPE)
-        assert config[self.TYPE] in self.TYPES, (
-            'Republisher '%s' must be one of: '%s'.' % (self.TYPE, [i for i in self.TYPES]))
+        assert self.TYPE in config, f'Republisher must have "{self.TYPE}" specified'
+        assert config[self.TYPE] in self.TYPES, f'Republisher "{self.TYPE}" must be one of "{[t for t in self.TYPES]}"'  # noqa:E501
         return self.TYPES[config[self.TYPE]](config)
 
 
@@ -192,10 +190,10 @@ class BaseCamera(BaseSensor):
     @staticmethod
     def assert_valid_fps(fps: int) -> None:
         assert isinstance(fps, int), (
-            'FPS '%s' is invalid, must be an integer.' % fps
+            'FPS "%s" is invalid, must be an integer.' % fps
         )
         assert 0 <= fps, (
-            'FPS '%s' must be a positive integer.' % fps
+            'FPS "%s" must be a positive integer.' % fps
         )
 
     @property
@@ -374,17 +372,17 @@ class IntelRealsense(BaseCamera):
         if isinstance(profile, str):
             profile = profile.split(',')
             assert len(profile) == 3, (
-                'Profile '%s' is not three comma separated values')
+                'Profile "%s" is not three comma separated values')
             try:
                 profile = [int(entry) for entry in profile]
             except ValueError:
                 raise AssertionError(
-                    'Profile '%s' cannot be cast to integer')
+                    'Profile "%s" cannot be cast to integer')
         else:
             assert len(profile) == 3, (
-                'Profile '%s' is not three integer values')
+                'Profile "%s" is not three integer values')
             assert all([isinstance(entry, int) for entry in profile]), (
-                'Profile '%s' is not three integer values')
+                'Profile "%s" is not three integer values')
         return profile
 
     def assert_pixel_length(
@@ -413,7 +411,7 @@ class IntelRealsense(BaseCamera):
     @device_type.setter
     def device_type(self, device_type: str) -> None:
         assert device_type in self.DEVICE_TYPES, (
-            'Device type '%s' is not one of '%s'' % (
+            'Device type "%s" is not one of "%s"' % (
                 device_type,
                 self.DEVICE_TYPES
             )
@@ -773,7 +771,7 @@ class FlirBlackfly(BaseCamera):
     @encoding.setter
     def encoding(self, encoding: str) -> None:
         assert encoding in FlirBlackfly.ENCODINGS, (
-            'Encoding '%s' not found in support encodings: '%s'' % (
+            'Encoding "%s" not found in support encodings: "%s"' % (
                 encoding, FlirBlackfly.ENCODINGS
             )
         )
@@ -907,7 +905,7 @@ class StereolabsZed(BaseCamera):
     @device_type.setter
     def device_type(self, device_type: str) -> None:
         assert device_type in self.DEVICE_TYPES, (
-            'Device type '%s' is not one of '%s'' % (
+            'Device type "%s" is not one of "%s"' % (
                 device_type,
                 self.DEVICE_TYPES
             )
@@ -921,7 +919,7 @@ class StereolabsZed(BaseCamera):
     @resolution.setter
     def resolution(self, resolution: str) -> None:
         assert resolution in self.RESOLUTION_PRESETS, (
-            'Resolution preset '%s' is not one oserial_numberf '%s'' % (
+            'Resolution preset "%s" is not one oserial_numberf "%s"' % (
                 resolution,
                 self.RESOLUTION_PRESETS
             )

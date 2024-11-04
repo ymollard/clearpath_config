@@ -293,7 +293,7 @@ class MicrostrainGQ7(BaseGPS):
 
     @baud.setter
     def baud(self, baud: int) -> None:
-        assert isinstance(baud, int), ('Baud must be of type 'int'.')
+        assert isinstance(baud, int), ('Baud must be of type "int".')
         assert baud >= 0, ('Baud must be positive integer.')
         self._baud = baud
 
@@ -374,7 +374,7 @@ class NMEA(BaseGPS):
 
     @baud.setter
     def baud(self, baud: int) -> None:
-        assert isinstance(baud, int), ('Baud must be of type 'int'.')
+        assert isinstance(baud, int), ('Baud must be of type "int".')
         assert baud >= 0, ('Baud must be positive integer.')
         self._baud = baud
 

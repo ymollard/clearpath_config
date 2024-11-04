@@ -114,7 +114,7 @@ class MiddlewareConfig(BaseConfig):
             self._rmw_implementation = value
         else:
             assert (isinstance(value, str)) or (isinstance(value, RMWImplementation)), (
-                f'RMW value of {value} is invalid, must be of type 'str' or 'RMWImplementation''
+                f'RMW value of {value} is invalid, must be of type "str" or "RMWImplementation"'
             )
 
     @property
@@ -135,7 +135,7 @@ class MiddlewareConfig(BaseConfig):
             assert (
                 isinstance(value, str)) or (isinstance(value, Discovery)), (
                 f'Discovery mode value of {value} is invalid.'
-                f'Discovery mode must be of type 'str' or 'RMWImplementation''
+                f'Discovery mode must be of type "str" or "RMWImplementation"'
             )
         self._discovery = value
 
@@ -191,7 +191,7 @@ class MiddlewareConfig(BaseConfig):
         if isinstance(value, list):
             assert all([isinstance(i, dict) for i in value]), (
                 f'Server {value} is invalid, must be list of ' +
-                'type 'dict' or of type 'ServerListConfig''
+                'type "dict" or of type "ServerListConfig"'
             )
             # If the servers were not explicitly listed, assume every device in the hosts list
             # should have its own discovery server running
@@ -201,13 +201,13 @@ class MiddlewareConfig(BaseConfig):
 
             for d in value:
                 assert isinstance(d, dict), (
-                    f'Server value of {d} is invalid, it must be of type 'dict''
+                    f'Server value of {d} is invalid, it must be of type "dict"'
                 )
                 server_list.append(ServerConfig(config=d))
         else:
             assert isinstance(value, ServerListConfig), (
                 f'Servers {value} is invalid, must be list of ' +
-                'type 'dict' or of type 'ServerListConfig''
+                'type "dict" or of type "ServerListConfig"'
             )
             server_list = value.get_all()
 

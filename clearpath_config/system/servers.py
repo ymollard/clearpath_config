@@ -129,7 +129,7 @@ class ServerConfig(BaseConfig):
             self._hostname = value
         else:
             assert isinstance(value, str) or isinstance(value, Hostname), (
-                f'Hostname of {value} is invalid, must be of type 'str' or 'Hostname''
+                f'Hostname of {value} is invalid, must be of type "str" or "Hostname"'
             )
         return
 
@@ -151,7 +151,7 @@ class ServerConfig(BaseConfig):
             self._ip_address = value
         else:
             assert isinstance(value, dict) or isinstance(value, IP), (
-                f'IP address of {value} is invalid, must be of type 'str' or 'IP''
+                f'IP address of {value} is invalid, must be of type "str" or "IP"'
             )
         return
 
@@ -171,7 +171,7 @@ class ServerConfig(BaseConfig):
             self._port = value
         else:
             assert isinstance(value, dict) or isinstance(value, Port), (
-                f'Port of {value} is invalid, must be of type 'str' or 'Port''
+                f'Port of {value} is invalid, must be of type "str" or "Port"'
             )
         return
 
