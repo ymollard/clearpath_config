@@ -30,7 +30,7 @@ from typing import List
 
 class Accessory():
     # Defaults
-    PARENT = "default_mount"
+    PARENT = 'default_mount'
     XYZ = [0.0, 0.0, 0.0]
     RPY = [0.0, 0.0, 0.0]
 
@@ -41,6 +41,11 @@ class Accessory():
             xyz: List[float] = XYZ,
             rpy: List[float] = RPY
             ) -> None:
+
+        self.assert_is_supported()
+        if self.is_deprecated:
+            print(f'{type(self)} is deprecated')
+
         self.name = str()
         self.parent = str()
         self.xyz = list()
@@ -125,6 +130,40 @@ class Accessory():
         assert len(tri) == 3, msg
         # Triplet must be all floats
         assert all([isinstance(i, float) for i in tri])
+
+    @staticmethod
+    def assert_is_supported():
+        """
+        Override this method to temporarily disable accessories that are not currently supported.
+
+        When disabling an accessory, raise a
+        clearpath_config.common.types.exception.UnsupportedAccessoryException
+        with a suitable mesage (e.g. "SpamEggs driver is not yet released for ROS 2 Jazzy")
+
+        @return None
+
+        @exception  Raises a clearpath_config.common.types.exception.UnsupportedAccessoryException
+                    if the accessory is not supported
+        """
+        pass
+
+    @property
+    def is_suppported(self):
+        try:
+            self.assert_is_supported()
+            return True
+        except:
+            return False
+
+    @property
+    def is_deprecated(self):
+        """
+        Override this method to indicate that this accessory has been deprecated and may be
+        removed at a future date.
+
+        When flagging an accessory for deprecation, simply override it to return True
+        """
+        return False
 
 
 class IndexedAccessory(Accessory):

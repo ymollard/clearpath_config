@@ -27,6 +27,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 from typing import List
 from clearpath_config.common.types.accessory import Accessory
+from clearpath_config.common.types.exception import UnsupportedAccessoryException
 from clearpath_config.common.types.ip import IP
 from clearpath_config.common.types.port import Port
 from clearpath_config.manipulators.types.grippers import Gripper
@@ -120,13 +121,25 @@ class BaseArm(BaseManipulator):
 class KinovaGen3Dof6(BaseArm):
     MANIPULATOR_MODEL = "kinova_gen3_6dof"
 
+    @classmethod
+    def assert_is_supported(self):
+        raise UnsupportedAccessoryException("Kinova Gen3 is not yet supported for Jazzy")
+
 
 class KinovaGen3Dof7(BaseArm):
     MANIPULATOR_MODEL = "kinova_gen3_7dof"
 
+    @classmethod
+    def assert_is_supported(self):
+        raise UnsupportedAccessoryException("Kinova Gen3 is not yet supported for Jazzy")
+
 
 class KinovaGen3Lite(BaseArm):
     MANIPULATOR_MODEL = "kinova_gen3_lite"
+
+    @classmethod
+    def assert_is_supported(self):
+        raise UnsupportedAccessoryException("Kinova Gen3 Lite is not yet supported for Jazzy")
 
 
 class Arm():
