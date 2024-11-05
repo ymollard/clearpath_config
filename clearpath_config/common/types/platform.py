@@ -114,6 +114,9 @@ class Platform:
         """
         Raises an exception if the platform is not presently supported/usable
 
+        Unsupported platforms may become supported in a future release, and there are no plans
+        to remove it; it simply is not (yet) compatible with the current ROS release.
+
         @param platform  The platform-identifying serial number prefix (e.g. 'a200', 'j100')
 
         @exception UnsupportedPlatformException if the platform is not supported
