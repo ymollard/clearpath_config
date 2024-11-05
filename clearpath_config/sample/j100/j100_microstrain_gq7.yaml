@@ -43,7 +43,7 @@ sensors:
     rpy: [0.0, 0.0, 0.0]
     ros_parameters:
       microstrain_inertial_driver:
-        port: '/dev/microstrain_main'
+        port: "/dev/microstrain_main"
         baudrate: 115200
-        gnss1_frame_id: 'left_antenna_link'
-        gnss2_frame_id: 'right_antenna_link'
+        gnss1_frame_id: "left_antenna_link"
+        gnss2_frame_id: "right_antenna_link"
