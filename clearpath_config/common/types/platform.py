@@ -112,7 +112,7 @@ class Platform:
     @staticmethod
     def assert_is_supported(platform):
         """
-        Raises an exception if the platform is not presently supported/usable
+        Raise an exception if the platform is not presently supported/usable.
 
         Unsupported platforms may become supported in a future release, and there are no plans
         to remove it; it simply is not (yet) compatible with the current ROS release.
@@ -128,7 +128,7 @@ class Platform:
     @staticmethod
     def notify_if_deprecated(platform):
         """
-        Prints a notification that the selected platform is deprecated
+        Print a notification that the selected platform is deprecated.
 
         Deprecated platforms may have their support removed in a future version
 
