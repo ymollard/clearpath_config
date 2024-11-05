@@ -25,6 +25,10 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from clearpath_config.common.ros import ROS_DISTRO
+from clearpath_config.common.types.exception import UnsupportedPlatformException
+
+
 class PACSProfile:
     def __init__(
             self,
@@ -104,3 +108,28 @@ class Platform:
         R100: IndexingProfile(imu=1),
         W200: IndexingProfile(imu=1),
     }
+
+    @staticmethod
+    def assert_is_supported(platform):
+        """
+        Raises an exception if the platform is not presently supported/usable
+
+        @param platform  The platform-identifying serial number prefix (e.g. 'a200', 'j100')
+
+        @exception UnsupportedPlatformException if the platform is not supported
+        """
+        platform = platform.lower()
+        if platform == Platform.W200:
+            raise UnsupportedPlatformException(f'Warthog ({Platform.W200}) is not supported in {ROS_DISTRO}')  # noqa:E501
+
+    @staticmethod
+    def notify_if_deprecated(platform):
+        """
+        Prints a notification that the selected platform is deprecated
+
+        Deprecated platforms may have their support removed in a future version
+
+        @param platform  The platform-identifying serial number prefix (e.g. 'a200', 'j100')
+        """
+        # currently nothing is deprecated, so nothing to do here (yet)
+        pass

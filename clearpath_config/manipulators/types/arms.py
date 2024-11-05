@@ -25,18 +25,15 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-import os
 from typing import List
 
+from clearpath_config.common.ros import ROS_DISTRO
 from clearpath_config.common.types.accessory import Accessory
 from clearpath_config.common.types.exception import UnsupportedAccessoryException
 from clearpath_config.common.types.ip import IP
 from clearpath_config.common.types.port import Port
 from clearpath_config.manipulators.types.grippers import Gripper
 from clearpath_config.manipulators.types.manipulator import BaseManipulator
-
-
-ROS_DISTRO = os.environ.get('ROS_DISTRO', 'jazzy')
 
 
 class BaseArm(BaseManipulator):

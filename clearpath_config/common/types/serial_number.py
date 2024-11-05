@@ -68,6 +68,11 @@ class SerialNumber:
         assert sn[0] in Platform.ALL, (
             'Serial Number model entry must match one of %s' % Platform.ALL
         )
+
+        # Verify that the platform is well-supported and not deprecated
+        Platform.assert_is_supported(sn[0])
+        Platform.notify_if_deprecated(sn[0])
+
         # Generic Robot
         if sn[0] == Platform.GENERIC:
             if len(sn) > 1:
