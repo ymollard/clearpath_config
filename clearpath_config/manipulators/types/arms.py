@@ -26,7 +26,10 @@
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
 from typing import List
+
+from clearpath_config.common.ros import ROS_DISTRO
 from clearpath_config.common.types.accessory import Accessory
+from clearpath_config.common.types.exception import UnsupportedAccessoryException
 from clearpath_config.common.types.ip import IP
 from clearpath_config.common.types.port import Port
 from clearpath_config.manipulators.types.grippers import Gripper
@@ -34,10 +37,10 @@ from clearpath_config.manipulators.types.manipulator import BaseManipulator
 
 
 class BaseArm(BaseManipulator):
-    MANIPULATOR_MODEL = "base"
-    MANIPULATOR_TYPE = "arm"
+    MANIPULATOR_MODEL = 'base'
+    MANIPULATOR_TYPE = 'arm'
 
-    IP_ADDRESS = "192.168.131.40"
+    IP_ADDRESS = '192.168.131.40'
     IP_PORT = 10000
 
     def __init__(
@@ -118,15 +121,27 @@ class BaseArm(BaseManipulator):
 
 
 class KinovaGen3Dof6(BaseArm):
-    MANIPULATOR_MODEL = "kinova_gen3_6dof"
+    MANIPULATOR_MODEL = 'kinova_gen3_6dof'
+
+    @staticmethod
+    def assert_is_supported():
+        raise UnsupportedAccessoryException(f'Kinova Gen3 is not yet supported in {ROS_DISTRO}')
 
 
 class KinovaGen3Dof7(BaseArm):
-    MANIPULATOR_MODEL = "kinova_gen3_7dof"
+    MANIPULATOR_MODEL = 'kinova_gen3_7dof'
+
+    @staticmethod
+    def assert_is_supported():
+        raise UnsupportedAccessoryException(f'Kinova Gen3 is not yet supported in {ROS_DISTRO}')
 
 
 class KinovaGen3Lite(BaseArm):
-    MANIPULATOR_MODEL = "kinova_gen3_lite"
+    MANIPULATOR_MODEL = 'kinova_gen3_lite'
+
+    @staticmethod
+    def assert_is_supported():
+        raise UnsupportedAccessoryException(f'Kinova Gen3 Lite is not yet supported in {ROS_DISTRO}')  # noqa:501
 
 
 class Arm():
@@ -142,12 +157,7 @@ class Arm():
 
     @classmethod
     def assert_model(cls, model: str) -> None:
-        assert model in cls.MODEL, (
-            "Arm model '%s' must be one of: '%s'" % (
-                model,
-                cls.MODEL.keys()
-            )
-        )
+        assert model in cls.MODEL, f'Arm model "{model}" must be one of "{cls.MODEL.keys()}"'
 
     def __new__(cls, model: str) -> BaseArm:
         cls.assert_model(model)

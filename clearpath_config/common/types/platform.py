@@ -25,6 +25,10 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from clearpath_config.common.ros import ROS_DISTRO
+from clearpath_config.common.types.exception import UnsupportedPlatformException
+
+
 class PACSProfile:
     def __init__(
             self,
@@ -55,23 +59,23 @@ class IndexingProfile:
 # - all supported platforms
 class Platform:
     # Dingo D V1
-    DD100 = "dd100"
+    DD100 = 'dd100'
     # Dingo O V1
-    DO100 = "do100"
+    DO100 = 'do100'
     # Dingo D V1.5
-    DD150 = "dd150"
+    DD150 = 'dd150'
     # Dingo D V1.5
-    DO150 = "do150"
+    DO150 = 'do150'
     # Jackal V1
-    J100 = "j100"
+    J100 = 'j100'
     # Husky V2
-    A200 = "a200"
+    A200 = 'a200'
     # Ridgeback V1
-    R100 = "r100"
+    R100 = 'r100'
     # Warthog V2
-    W200 = "w200"
+    W200 = 'w200'
     # Genric Robot
-    GENERIC = "generic"
+    GENERIC = 'generic'
 
     ALL = [
         DD100,
@@ -104,3 +108,39 @@ class Platform:
         R100: IndexingProfile(imu=1),
         W200: IndexingProfile(imu=1),
     }
+
+    @staticmethod
+    def assert_is_supported(platform):
+        """
+        Raise an exception if the platform is not presently supported/usable.
+
+        Unsupported platforms may become supported in a future release, and there are no plans
+        to remove it; it simply is not (yet) compatible with the current ROS release.
+
+        @param platform  The platform-identifying serial number prefix (e.g. 'a200', 'j100')
+
+        @exception UnsupportedPlatformException if the platform is not supported
+        """
+        platform = platform.lower()
+        if platform == Platform.W200:
+            raise UnsupportedPlatformException(f'Warthog ({Platform.W200}) is not supported in {ROS_DISTRO}')  # noqa:E501
+        elif (
+            platform == Platform.DD100 or
+            platform == Platform.DD150 or
+            platform == Platform.DO100 or
+            platform == Platform.DO150 or
+            platform == Platform.R100
+        ):
+            raise UnsupportedPlatformException(f'Platform {platform} is still in-development and not yet supported on {ROS_DISTRO}')  # noqa:E501
+
+    @staticmethod
+    def notify_if_deprecated(platform):
+        """
+        Print a notification that the selected platform is deprecated.
+
+        Deprecated platforms may have their support removed in a future version
+
+        @param platform  The platform-identifying serial number prefix (e.g. 'a200', 'j100')
+        """
+        # currently nothing is deprecated, so nothing to do here (yet)
+        pass

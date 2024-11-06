@@ -25,31 +25,32 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from clearpath_config.common.types.list import ListConfig
 from typing import List
+
+from clearpath_config.common.types.list import ListConfig
 
 
 class CANBridge:
-    INTERFACE = "interface"
-    ENABLE_CAN_FD = "enable_can_fd"
-    INTERVAL = "interval"
-    USE_BUS_TIME = "use_bus_time"
-    FILTERS = "filters"
-    AUTO_CONFIGURE = "auto_configure"
-    AUTO_ACTIVATE = "auto_activate"
-    TOPIC_RX = "topic_rx"
-    TOPIC_TX = "topic_tx"
+    INTERFACE = 'interface'
+    ENABLE_CAN_FD = 'enable_can_fd'
+    INTERVAL = 'interval'
+    USE_BUS_TIME = 'use_bus_time'
+    FILTERS = 'filters'
+    AUTO_CONFIGURE = 'auto_configure'
+    AUTO_ACTIVATE = 'auto_activate'
+    TOPIC_RX = 'topic_rx'
+    TOPIC_TX = 'topic_tx'
 
     DEFAULTS = {
-        INTERFACE: "can0",
+        INTERFACE: 'can0',
         ENABLE_CAN_FD: False,
         INTERVAL: 0.01,
         USE_BUS_TIME: False,
-        FILTERS: "0:0",
+        FILTERS: '0:0',
         AUTO_CONFIGURE: True,
         AUTO_ACTIVATE: True,
-        TOPIC_RX: "can0/rx",
-        TOPIC_TX: "can0/tx"
+        TOPIC_RX: 'can0/rx',
+        TOPIC_TX: 'can0/tx'
     }
 
     def __init__(
@@ -75,7 +76,7 @@ class CANBridge:
         self.auto_activate = auto_activate
 
     def to_dict(self) -> dict:
-        d = dict()
+        d = {}
         d[self.INTERFACE] = self.interface
         d[self.ENABLE_CAN_FD] = self.enaled_can_fd
         d[self.INTERVAL] = self.interval
@@ -115,9 +116,9 @@ class CANBridge:
     def interface(self, interface: str) -> None:
         self._interface = interface
         if self.topic_rx == self.DEFAULTS[self.TOPIC_RX]:
-            self.topic_rx = f"{interface}/rx"
+            self.topic_rx = f'{interface}/rx'
         if self.topic_tx == self.DEFAULTS[self.TOPIC_TX]:
-            self.topic_tx = f"{interface}/tx"
+            self.topic_tx = f'{interface}/tx'
 
 
 class CANBridgeListConfig(ListConfig[CANBridge, str]):

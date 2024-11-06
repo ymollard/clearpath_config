@@ -25,20 +25,20 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from clearpath_config.common.types.platform import Platform
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.types.package_path import PackagePath
+from clearpath_config.common.types.platform import Platform
 from clearpath_config.common.utils.dictionary import flip_dict
-from clearpath_config.platform.battery import BatteryConfig
-from clearpath_config.platform.extras import ExtrasConfig
 from clearpath_config.platform.attachments.config import AttachmentsConfig
 from clearpath_config.platform.attachments.mux import AttachmentsConfigMux
+from clearpath_config.platform.battery import BatteryConfig
 from clearpath_config.platform.can import CANBridgeConfig
+from clearpath_config.platform.extras import ExtrasConfig
 
 
 class DescriptionPackagePath(PackagePath):
-    MACRO = "macro"
-    PARAMETERS = "parameters"
+    MACRO = 'macro'
+    PARAMETERS = 'parameters'
 
     def __init__(
             self,
@@ -83,24 +83,24 @@ class DescriptionPackagePath(PackagePath):
 
 class PlatformConfig(BaseConfig):
 
-    PLATFORM = "platform"
+    PLATFORM = 'platform'
     # Controllers
-    PS4 = "ps4"
-    LOGITECH = "logitech"
+    PS4 = 'ps4'
+    LOGITECH = 'logitech'
 
-    CONTROLLER = "controller"
-    ATTACHMENTS = "attachments"
-    CAN_BRIDGES = "can_bridges"
+    CONTROLLER = 'controller'
+    ATTACHMENTS = 'attachments'
+    CAN_BRIDGES = 'can_bridges'
     # Extras
-    EXTRAS = "extras"
+    EXTRAS = 'extras'
     # Generic Robot
-    DESCRIPTION = "description"
-    LAUNCH = "launch"
-    CONTROL = "control"
+    DESCRIPTION = 'description'
+    LAUNCH = 'launch'
+    CONTROL = 'control'
     # Battery
-    BATTERY = "battery"
+    BATTERY = 'battery'
     # Wheel
-    WHEEL = "wheel"
+    WHEEL = 'wheel'
 
     TEMPLATE = {
         PLATFORM: {
@@ -124,11 +124,11 @@ class PlatformConfig(BaseConfig):
         ATTACHMENTS: {},
         CAN_BRIDGES: {},
         EXTRAS: ExtrasConfig.DEFAULTS,
-        DESCRIPTION: "",
-        LAUNCH: "",
-        CONTROL: "",
+        DESCRIPTION: '',
+        LAUNCH: '',
+        CONTROL: '',
         BATTERY: BatteryConfig.DEFAULTS,
-        WHEEL: "default",
+        WHEEL: 'default',
     }
 
     def __init__(
@@ -203,10 +203,7 @@ class PlatformConfig(BaseConfig):
 
     @controller.setter
     def controller(self, value: str) -> None:
-        assert value.lower() in [self.PS4, self.LOGITECH], (
-            "'%s' controller is invalid. Must be one of: '%s'" % (
-                value.lower(),
-                [self.PS4, self.LOGITECH]))
+        assert value.lower() in [self.PS4, self.LOGITECH], f'"{value.lower()}" controller is invalid. Must be one of "{[self.PS4, self.LOGITECH]}"'  # noqa:501
         self._controller = value.lower()
 
     @property
@@ -251,7 +248,7 @@ class PlatformConfig(BaseConfig):
         else:
             assert isinstance(value, dict) or (
                     isinstance(value, ExtrasConfig)), (
-                "Extras must be of type 'dict' or 'ExtrasConfig'"
+                'Extras must be of type "dict" or "ExtrasConfig"'
             )
 
     def get_controller(self) -> str:
@@ -318,9 +315,7 @@ class PlatformConfig(BaseConfig):
             self._battery = value
         else:
             assert isinstance(value, dict) or (
-                isinstance(value, BatteryConfig)), (
-                "Battery configuration must be of type 'dict' or 'BatteryConfig'"
-            )
+                isinstance(value, BatteryConfig)), 'Battery configuration must be of type "dict" or "BatteryConfig"'  # noqa:E501
 
     @property
     def wheel(self) -> str:
