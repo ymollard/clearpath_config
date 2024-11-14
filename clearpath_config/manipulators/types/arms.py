@@ -40,15 +40,19 @@ class BaseArm(BaseManipulator):
     MANIPULATOR_MODEL = 'base'
     MANIPULATOR_TYPE = 'arm'
 
-    IP_ADDRESS = '192.168.131.40'
-    IP_PORT = 10000
+    IP_ADDRESS = "ip"
+    IP_PORT = "port"
+    DEFAULT_IP_ADDRESS = "192.168.131.40"
+    DEFAULT_IP_PORT = 10000
+
+    URDF_PARAMETERS = {}
 
     def __init__(
             self,
             idx: int = None,
             name: str = None,
-            ip: str = IP_ADDRESS,
-            port: int = IP_PORT,
+            ip: str = DEFAULT_IP_ADDRESS,
+            port: int = DEFAULT_IP_PORT,
             ros_parameters: dict = BaseManipulator.ROS_PARAMETERS,
             ros_parameters_template: dict = BaseManipulator.ROS_PARAMETERS_TEMPLATE,
             parent: str = Accessory.PARENT,
@@ -63,17 +67,19 @@ class BaseArm(BaseManipulator):
         self.ip = IP(ip)
         # IP Port
         self.port = Port(port)
+        # URDF Parameters
+        self.urdf_parameters = dict(self.URDF_PARAMETERS)
 
     @classmethod
     def get_ip_from_idx(cls, idx: int) -> str:
-        ip = cls.IP_ADDRESS.split('.')
+        ip = cls.DEFAULT_IP_ADDRESS.split('.')
         network_id = ip[0:3]
         host_id = int(ip[-1]) + idx
         return '.'.join(network_id) + '.' + str(host_id)
 
     def set_idx(self, idx: int) -> None:
         super().set_idx(idx)
-        if 'ip' not in self.config:
+        if self.IP_ADDRESS not in self.config:
             self.ip = self.get_ip_from_idx(idx)
         if self.gripper:
             self.gripper.name = self.name + '_gripper'
@@ -97,12 +103,15 @@ class BaseArm(BaseManipulator):
 
     def to_dict(self) -> dict:
         d = super().to_dict()
-        d['ip'] = self.ip
-        d['port'] = self.port
+        d[self.IP_ADDRESS] = self.ip
+        d[self.IP_PORT] = self.port
         if self.gripper:
             d['gripper'] = self.gripper.to_dict()
         else:
             d['gripper'] = None
+        for k, v in self.urdf_parameters.items():
+            if v:
+                d[k] = v
         return d
 
     def from_dict(self, d: dict) -> None:
@@ -114,10 +123,20 @@ class BaseArm(BaseManipulator):
             self.gripper.set_name('%s_gripper' % self.get_name())
             if 'parent' not in d['gripper']:
                 self.gripper.set_parent('%s_end_effector_link' % self.get_name())
-        if 'ip' in d:
-            self.ip = d['ip']
-        if 'port' in d:
-            self.port = d['port']
+        if self.IP_ADDRESS in d:
+            self.ip = d[self.IP_ADDRESS]
+        if self.IP_PORT in d:
+            self.port = d[self.IP_PORT]
+        for k in self.urdf_parameters:
+            if k in d:
+                self.urdf_parameters[k] = d[k]
+
+    def get_urdf_parameters(self) -> dict:
+        d = {}
+        for k, v in self.urdf_parameters.items():
+            if v:
+                d[k] = v
+        return d
 
 
 class KinovaGen3Dof6(BaseArm):
@@ -144,15 +163,104 @@ class KinovaGen3Lite(BaseArm):
         raise UnsupportedAccessoryException(f'Kinova Gen3 Lite is not yet supported in {ROS_DISTRO}')  # noqa:501
 
 
+class UniversalRobots(BaseArm):
+    MANIPULATOR_MODEL = "universal_robots"
+
+    # Description Variables
+    UR_TYPE = 'ur_type'
+    INITIAL_POSITIONS = 'initial_positions'
+    INITIAL_POSITIONS_FILE = 'initial_positions_file'
+    JOINT_LIMITS_PARAMETERS_FILE = 'joint_limits_parameters_file'
+    KINEMATICS_PARAMETERS_FILE = 'kinematics_parameters_file'
+    PHYSICAL_PARAMETERS_FILE = 'physical_parameters_file'
+    VISUAL_PARAMETERS_FILE = 'visual_parameters_file'
+    SAFETY_LIMITS = 'safety_limits'
+    SAFETY_POS_MARGIN = 'safety_pos_margin'
+    SAFETY_K_POSITION = 'safety_k_position'
+    # Control Parameters
+    GENERATE_ROS2_CONTROL_TAG = 'generate_ros2_control_tag'
+    HEADLESS_MODE = 'headless_mode'
+    IP_ADDRESS = 'robot_ip'
+    SCRIPT_FILENAME = 'script_filename'
+    OUTPUT_RECIPE_FILENAME = 'output_recipe_filename'
+    INPUT_RECIPE_FILENAME = 'input_recipe_filename'
+    REVERSE_IP = 'reverse_ip'
+    SCRIPT_COMMAND_PORT = 'script_command_port'
+    REVERSE_PORT = 'reverse_port'
+    SCRIPT_SENDER_PORT = 'script_sender_port'
+    TRAJECTORY_PORT = 'trajectory_port'
+    TRANSMISSION_HW_INTERFACE = 'transmission_hw_interface'
+    NON_BLOCKING_READ = 'non_blocking_read'
+    KEEP_ALIVE_COUNT = 'keep_alive_count'
+    # Tool Communication Parameters
+    USE_TOOL_COMMUNICATION = 'use_tool_communication'
+    TOOL_VOLTAGE = 'tool_voltage'
+    TOOL_PARITY = 'tool_parity'
+    TOOL_BAUD_RATE = 'tool_baud_rate'
+    TOOL_STOP_BITS = 'tool_stop_bits'
+    TOOL_RX_IDLE_CHARS = 'tool_rx_idle_chars'
+    TOOL_TX_IDLE_CHARS = 'tool_tx_idle_chars'
+    TOOL_DEVICE_NAME = 'tool_device_name'
+    TOOL_TCP_PORT = 'tool_tcp_port'
+    # Simulation Parameters
+    USE_FAKE_HARDWARE = 'use_fake_hardware'
+    FAKE_SENSOR_COMMANDS = 'fake_sensor_commands'
+    SIM_GAZEBO = 'sim_gazebo'
+    SIM_IGNITION = 'sim_ignition'
+
+    # URDF Parameters
+    URDF_PARAMETERS = {
+        UR_TYPE: '',
+        INITIAL_POSITIONS: '',
+        INITIAL_POSITIONS_FILE: '',
+        JOINT_LIMITS_PARAMETERS_FILE: '',
+        KINEMATICS_PARAMETERS_FILE: '',
+        PHYSICAL_PARAMETERS_FILE: '',
+        VISUAL_PARAMETERS_FILE: '',
+        SAFETY_LIMITS: '',
+        SAFETY_POS_MARGIN: '',
+        SAFETY_K_POSITION: '',
+        GENERATE_ROS2_CONTROL_TAG: '',
+        HEADLESS_MODE: '',
+        IP_ADDRESS: '',
+        SCRIPT_FILENAME: '',
+        OUTPUT_RECIPE_FILENAME: '',
+        INPUT_RECIPE_FILENAME: '',
+        REVERSE_IP: '',
+        SCRIPT_COMMAND_PORT: '',
+        REVERSE_PORT: '',
+        SCRIPT_SENDER_PORT: '',
+        TRAJECTORY_PORT: '',
+        TRANSMISSION_HW_INTERFACE: '',
+        NON_BLOCKING_READ: '',
+        KEEP_ALIVE_COUNT: '',
+        USE_TOOL_COMMUNICATION: '',
+        TOOL_VOLTAGE: '',
+        TOOL_PARITY: '',
+        TOOL_BAUD_RATE: '',
+        TOOL_STOP_BITS: '',
+        TOOL_RX_IDLE_CHARS: '',
+        TOOL_TX_IDLE_CHARS: '',
+        TOOL_DEVICE_NAME: '',
+        TOOL_TCP_PORT: '',
+        USE_FAKE_HARDWARE: '',
+        FAKE_SENSOR_COMMANDS: '',
+        SIM_GAZEBO: '',
+        SIM_IGNITION: '',
+    }
+
+
 class Arm():
     KINOVA_GEN3_6DOF = KinovaGen3Dof6.MANIPULATOR_MODEL
     KINOVA_GEN3_7DOF = KinovaGen3Dof7.MANIPULATOR_MODEL
     KINOVA_GEN3_LITE = KinovaGen3Lite.MANIPULATOR_MODEL
+    UNIVERSAL_ROBOTS = UniversalRobots.MANIPULATOR_MODEL
 
     MODEL = {
         KINOVA_GEN3_6DOF: KinovaGen3Dof6,
         KINOVA_GEN3_7DOF: KinovaGen3Dof7,
         KINOVA_GEN3_LITE: KinovaGen3Lite,
+        UNIVERSAL_ROBOTS: UniversalRobots,
     }
 
     @classmethod
