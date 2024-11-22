@@ -192,6 +192,7 @@ class PlatformConfig(BaseConfig):
                 self.template = template
             # Reload battery
             self.battery.update(serial_number=serial_number)
+            self.can_bridges.update(serial_number=serial_number)
 
     @property
     def controller(self) -> str:

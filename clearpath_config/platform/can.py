@@ -25,6 +25,9 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from clearpath_config.common.types.config import BaseConfig
+from clearpath_config.common.types.list import ListConfig
+from clearpath_config.common.types.platform import Platform
 from typing import List
 
 from clearpath_config.common.types.list import ListConfig
@@ -131,6 +134,30 @@ class CANBridgeListConfig(ListConfig[CANBridge, str]):
 
 
 class CANBridgeConfig:
+    SINGLE_VCAN_DEFAULT = [
+        {
+            CANBridge.INTERFACE: "vcan0",
+            CANBridge.ENABLE_CAN_FD: False,
+            CANBridge.INTERVAL: 0.01,
+            CANBridge.USE_BUS_TIME: False,
+            CANBridge.FILTERS: "0:0",
+            CANBridge.AUTO_CONFIGURE: True,
+            CANBridge.AUTO_ACTIVATE: True,
+        }
+    ]
+
+    DEFAULTS = {
+        Platform.A200: [],
+        Platform.DD100: SINGLE_VCAN_DEFAULT,
+        Platform.DD150: SINGLE_VCAN_DEFAULT,
+        Platform.DO100: SINGLE_VCAN_DEFAULT,
+        Platform.DO150: SINGLE_VCAN_DEFAULT,
+        Platform.GENERIC: [],
+        Platform.J100: [],
+        Platform.R100: SINGLE_VCAN_DEFAULT,
+        Platform.W200: [],
+    }
+
     def __init__(
             self,
             config: dict = {}
@@ -156,3 +183,7 @@ class CANBridgeConfig:
             bridge = CANBridge()
             bridge.from_dict(b)
             self._can_bridges.add(bridge)
+
+    def update(self, serial_number: bool = False) -> None:
+        if serial_number:
+            self.config = self.DEFAULTS[BaseConfig.get_platform_model()]
