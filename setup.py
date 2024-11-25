@@ -34,13 +34,13 @@ package_name = 'clearpath_config'
 
 # Samples
 samples = []
-for path, dirs, files in os.walk(os.path.join(package_name, "sample")):
+for path, dirs, files in os.walk(os.path.join(package_name, 'sample')):
     for file in files:
         samples.append(os.path.join(path, file))
 
 setup(
     name=package_name,
-    version="0.3.4",
+    version='0.3.4',
     packages=[
         package_name,
         package_name + '.common',
@@ -64,8 +64,8 @@ setup(
         ('share/ament_index/resource_index/packages',
             ['resource/' + package_name]),
         # Include the package.xml file
-        (os.path.join("share", package_name), ["package.xml"]),
-        (os.path.join("share", package_name, "sample"), samples),
+        (os.path.join('share', package_name), ['package.xml']),
+        (os.path.join('share', package_name, 'sample'), samples),
     ],
     install_requires=[
         'setuptools',

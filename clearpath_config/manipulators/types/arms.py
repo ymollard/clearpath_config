@@ -40,9 +40,9 @@ class BaseArm(BaseManipulator):
     MANIPULATOR_MODEL = 'base'
     MANIPULATOR_TYPE = 'arm'
 
-    IP_ADDRESS = "ip"
-    IP_PORT = "port"
-    DEFAULT_IP_ADDRESS = "192.168.131.40"
+    IP_ADDRESS = 'ip'
+    IP_PORT = 'port'
+    DEFAULT_IP_ADDRESS = '192.168.131.40'
     DEFAULT_IP_PORT = 10000
 
     URDF_PARAMETERS = {}
@@ -164,7 +164,7 @@ class KinovaGen3Lite(BaseArm):
 
 
 class UniversalRobots(BaseArm):
-    MANIPULATOR_MODEL = "universal_robots"
+    MANIPULATOR_MODEL = 'universal_robots'
 
     # Description Variables
     UR_TYPE = 'ur_type'
