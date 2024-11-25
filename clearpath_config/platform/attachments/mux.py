@@ -27,6 +27,7 @@
 # POSSIBILITY OF SUCH DAMAGE.
 from clearpath_config.common.types.platform import Platform
 from clearpath_config.platform.attachments.a200 import A200Attachment
+from clearpath_config.platform.attachments.a300 import A300Attachment
 from clearpath_config.platform.attachments.config import AttachmentsConfig
 from clearpath_config.platform.attachments.dd100 import DD100Attachment
 from clearpath_config.platform.attachments.dd150 import DD150Attachment
@@ -42,6 +43,7 @@ from clearpath_config.platform.types.attachment import BaseAttachment
 class AttachmentsConfigMux:
     PLATFORM = {
         Platform.A200: AttachmentsConfig(A200Attachment),
+        Platform.A300: AttachmentsConfig(A300Attachment),
         Platform.DD100: AttachmentsConfig(DD100Attachment),
         Platform.DO100: AttachmentsConfig(DO100Attachment),
         Platform.DD150: AttachmentsConfig(DD150Attachment),
