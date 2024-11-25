@@ -146,8 +146,30 @@ class CANBridgeConfig:
         }
     ]
 
+    A300_DEFAULT = [
+        {
+            CANBridge.INTERFACE: "can0",
+            CANBridge.ENABLE_CAN_FD: False,
+            CANBridge.INTERVAL: 0.01,
+            CANBridge.USE_BUS_TIME: False,
+            CANBridge.FILTERS: "0:0",
+            CANBridge.AUTO_CONFIGURE: True,
+            CANBridge.AUTO_ACTIVATE: True,
+        },
+        {
+            CANBridge.INTERFACE: "vcan1",
+            CANBridge.ENABLE_CAN_FD: False,
+            CANBridge.INTERVAL: 0.01,
+            CANBridge.USE_BUS_TIME: False,
+            CANBridge.FILTERS: "0:0",
+            CANBridge.AUTO_CONFIGURE: True,
+            CANBridge.AUTO_ACTIVATE: True,
+        }
+    ]
+
     DEFAULTS = {
         Platform.A200: [],
+        Platform.A300: A300_DEFAULT,
         Platform.DD100: SINGLE_VCAN_DEFAULT,
         Platform.DD150: SINGLE_VCAN_DEFAULT,
         Platform.DO100: SINGLE_VCAN_DEFAULT,
