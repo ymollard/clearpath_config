@@ -48,7 +48,17 @@ class ROSParameterDefaults:
         'platform_velocity_controller.angular.z.min_acceleration': -6.0,
     }
 
-    A300 = {}
+    A300 = {
+        'platform_velocity_controller.wheel_radius': 0.1625,
+        'platform_velocity_controller.linear.x.max_velocity': 2.0,
+        'platform_velocity_controller.linear.x.min_velocity': -2.0,
+        'platform_velocity_controller.linear.x.max_acceleration': 4.0,
+        'platform_velocity_controller.linear.x.min_acceleration': -4.0,
+        'platform_velocity_controller.angular.z.max_velocity': 2.0,
+        'platform_velocity_controller.angular.z.min_velocity': -2.0,
+        'platform_velocity_controller.angular.z.max_acceleration': 4.0,
+        'platform_velocity_controller.angular.z.min_acceleration': -4.0,
+    }
 
     DD100 = {
         'platform_velocity_controller.wheel_radius': 0.049,
