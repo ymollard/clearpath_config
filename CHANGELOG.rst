@@ -2,6 +2,34 @@
 Changelog for package clearpath_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+Forthcoming
+-----------
+* Add default vcan ROS interfaces based on platform
+* Add support for Axis cameras (`#90 <https://github.com/clearpathrobotics/clearpath_config/issues/90>`_)
+  * Add the initial AxisCamera class with all ROS parameters defined in axis_camera's launch files & nodes
+  * Add the AxisCamera class to the sensors generator
+  * Add the serial to the axis camera's template
+  * Add serial to the template keys too
+  * Add serial getter/setter. Use empty string as default serial
+  * Refactoring, set the property to the value for the template
+  * frame_width -> width, frame_height -> height
+  * Rename setter
+  * Make the scales & offsets floats by default
+  * Add the TF prefix parameter
+  * Add the camera_info_url parameter
+  * camera_num -> camera
+  * Note that the serial isn't used, fix the name of the PTZ teleop parameter
+  * Add the remaining camera topics to the Topics object
+  * image_raw -> image
+  * Add axis_camera sample
+* Remove empty line at EoF
+* Add ur_arm
+* Add header
+* rx and tx topics for can bridge
+* Initial can_bridges add
+* Add a sample for each sensor
+* Contributors: Chris Iverach-Brereton, Luis Camero
+
 0.3.4 (2024-10-04)
 ------------------
 * Add OAKD
