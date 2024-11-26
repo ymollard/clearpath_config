@@ -2,8 +2,8 @@
 Changelog for package clearpath_config
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Forthcoming
------------
+1.0.0 (2024-11-25)
+------------------
 * Add default vcan ROS interfaces based on platform
 * Add support for Axis cameras (`#90 <https://github.com/clearpathrobotics/clearpath_config/issues/90>`_)
   * Add the initial AxisCamera class with all ROS parameters defined in axis_camera's launch files & nodes
