@@ -46,6 +46,8 @@ class BatteryConfig(BaseConfig):
     ES20_12C = 'ES20_12C'
     # A200/J100 LiION
     HE2613 = 'HE2613'
+    # A300 LiFEPO4
+    S_24V20_U1 = 'S_24V20_U1'
     # R100 Lead Acid
     DTM8A31 = '8A31DTM'
     # W200 Lead Acid
@@ -62,6 +64,7 @@ class BatteryConfig(BaseConfig):
     S1P2 = 'S1P2'
     S1P3 = 'S1P3'
     S1P4 = 'S1P4'
+    S1P6 = 'S1P6'
     S2P1 = 'S2P1'
     S4P1 = 'S4P1'
     S4P3 = 'S4P3'
@@ -73,6 +76,9 @@ class BatteryConfig(BaseConfig):
         Platform.A200: {
             ES20_12C: [S2P1],
             HE2613: [S1P3, S1P4],
+        },
+        Platform.A300: {
+            S_24V20_U1: [S1P2, S1P4, S1P6],
         },
         Platform.DD100: {
             TLV1222: [S1P1],

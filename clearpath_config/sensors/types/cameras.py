@@ -25,9 +25,7 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
-from typing import List
 from math import pi
-
 from typing import List
 
 from clearpath_config.common.types.accessory import Accessory
@@ -1359,7 +1357,7 @@ class AxisCamera(BaseCamera):
     @device_type.setter
     def device_type(self, device_type: str) -> None:
         assert device_type in self.DEVICE_TYPES, (
-            "Device type '%s' is not one of '%s'" % (
+            'Device type "%s" is not one of "%s"' % (
                 device_type,
                 self.DEVICE_TYPES
             )

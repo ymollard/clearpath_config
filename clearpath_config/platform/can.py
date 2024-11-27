@@ -25,12 +25,11 @@
 # CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
 # ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
 # POSSIBILITY OF SUCH DAMAGE.
+from typing import List
+
 from clearpath_config.common.types.config import BaseConfig
 from clearpath_config.common.types.list import ListConfig
 from clearpath_config.common.types.platform import Platform
-from typing import List
-
-from clearpath_config.common.types.list import ListConfig
 
 
 class CANBridge:
@@ -136,11 +135,32 @@ class CANBridgeListConfig(ListConfig[CANBridge, str]):
 class CANBridgeConfig:
     SINGLE_VCAN_DEFAULT = [
         {
-            CANBridge.INTERFACE: "vcan0",
+            CANBridge.INTERFACE: 'vcan0',
             CANBridge.ENABLE_CAN_FD: False,
             CANBridge.INTERVAL: 0.01,
             CANBridge.USE_BUS_TIME: False,
-            CANBridge.FILTERS: "0:0",
+            CANBridge.FILTERS: '0:0',
+            CANBridge.AUTO_CONFIGURE: True,
+            CANBridge.AUTO_ACTIVATE: True,
+        }
+    ]
+
+    A300_DEFAULT = [
+        {
+            CANBridge.INTERFACE: 'can0',
+            CANBridge.ENABLE_CAN_FD: False,
+            CANBridge.INTERVAL: 0.01,
+            CANBridge.USE_BUS_TIME: False,
+            CANBridge.FILTERS: '0:0',
+            CANBridge.AUTO_CONFIGURE: True,
+            CANBridge.AUTO_ACTIVATE: True,
+        },
+        {
+            CANBridge.INTERFACE: 'vcan1',
+            CANBridge.ENABLE_CAN_FD: False,
+            CANBridge.INTERVAL: 0.01,
+            CANBridge.USE_BUS_TIME: False,
+            CANBridge.FILTERS: '0:0',
             CANBridge.AUTO_CONFIGURE: True,
             CANBridge.AUTO_ACTIVATE: True,
         }
@@ -148,6 +168,7 @@ class CANBridgeConfig:
 
     DEFAULTS = {
         Platform.A200: [],
+        Platform.A300: A300_DEFAULT,
         Platform.DD100: SINGLE_VCAN_DEFAULT,
         Platform.DD150: SINGLE_VCAN_DEFAULT,
         Platform.DO100: SINGLE_VCAN_DEFAULT,

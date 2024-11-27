@@ -70,6 +70,8 @@ class Platform:
     J100 = 'j100'
     # Husky V2
     A200 = 'a200'
+    # Husky V3
+    A300 = 'a300'
     # Ridgeback V1
     R100 = 'r100'
     # Warthog V2
@@ -84,6 +86,7 @@ class Platform:
         DO150,
         J100,
         A200,
+        A300,
         R100,
         W200,
         GENERIC
@@ -92,6 +95,7 @@ class Platform:
     PACS = {
         GENERIC: PACSProfile(rows=100, columns=100),
         A200: PACSProfile(rows=8, columns=7),
+        A300: PACSProfile(rows=8, columns=7),
         J100: PACSProfile(rows=4, columns=2),
         W200: PACSProfile(rows=100, columns=100),
         R100: PACSProfile(rows=100, columns=100),
@@ -100,6 +104,7 @@ class Platform:
     INDEX = {
         GENERIC: IndexingProfile(),
         A200: IndexingProfile(),
+        A300: IndexingProfile(),
         DD100: IndexingProfile(imu=1),
         DO100: IndexingProfile(imu=1),
         DD150: IndexingProfile(imu=1),
