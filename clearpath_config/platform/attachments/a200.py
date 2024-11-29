@@ -116,6 +116,7 @@ class A200ObserverBackpack(BaseAttachment):
             ) -> None:
         super().__init__(name, model, enabled, parent, xyz, rpy)
 
+
 class A200Attachment(PlatformAttachment):
     PLATFORM = Platform.A200
     # Top Plates
