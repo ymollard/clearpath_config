@@ -134,3 +134,13 @@ sensors:
           ip_address: 192.168.131.32
           ip_port: 55555
           imu_frame_id: gps_1_link
+  imu:
+    - model: microstrain_imu
+      urdf_enabled: true
+      launch_enabled: true
+      parent: backpack_imu_mount
+      ros_parameters:
+        microstrain_inertial_driver:
+          imu_frame_id: imu_0_link
+          port: /dev/microstrain_main
+          use_enu_frame: true
